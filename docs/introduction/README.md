@@ -21,7 +21,7 @@ Password : demodemo </br>
 
 Getting support
 --------
-If you need help using QloApps, contact the QloApps support team by raising ticket at https://webkul.uvdesk.com or on the forums at https://forums.qloapps.com/
+If you need help using QloApps, contact the QloApps support team by raising ticket at [https://webkul.uvdesk.com](https://webkul.uvdesk.com) or on the forums at [https://forums.qloapps.com/](https://forums.qloapps.com/)
 
 License
 --------
