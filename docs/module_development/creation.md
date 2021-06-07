@@ -216,12 +216,12 @@ This class is used to store settings in the **PREFIX_configuration** table. You 
 - **`Configuration::deleteByName('myQloVariable')`** : Deletes the row from "PREFIX_configuration" table which have name "myQloVariable".
 
 #### **Saving an array value. Store the array value by serializeing this first.**
-```
+```php
 Configuration::updateValue('QLO_GLOBAL_SETTINGS', serialize(array('A', 'B', 'C')));
 ```
 
 #### Get an array from the "PREFIX_configuration" table
-```
+```php
 $arrayValue = unserialize(Configuration::get('QLO_GLOBAL_SETTINGS'));
 ```
 

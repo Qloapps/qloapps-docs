@@ -14,15 +14,15 @@ All these concepts will be discussed further in this documentation in detail.
 
 Demo
 --------
-FrontEnd : http://demo.qloapps.com </br>
-Backend : http://demo.qloapps.com/adminhtl/index.php </br>
+FrontEnd : [http://demo.qloapps.com](http://demo.qloapps.com) </br>
+Backend : [http://demo.qloapps.com/adminhtl/index.php](http://demo.qloapps.com/adminhtl/index.php) </br>
 username : demo@demo.com </br>
 Password : demodemo </br>
 
 Getting support
 --------
-If you need help using QloApps, contact the QloApps support team by raising ticket at https://webkul.uvdesk.com or on the forums at https://forums.qloapps.com/
+If you need help using QloApps, contact the QloApps support team by raising ticket at [https://webkul.uvdesk.com](https://webkul.uvdesk.com) or on the forums at [https://forums.qloapps.com/](https://forums.qloapps.com/)
 
 License
 --------
-OSL V3 : https://opensource.org/licenses/OSL-3.0
+OSL V3 : [https://opensource.org/licenses/OSL-3.0](https://opensource.org/licenses/OSL-3.0)
