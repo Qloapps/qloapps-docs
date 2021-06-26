@@ -1,11 +1,11 @@
 # The ObjectModel class
-When you want to fo deep in QloApps development, you need to utilize the ObjectModel class. This is the fundamental object of QloApps' object model. It very well may be overridden but with great precaution. 
+When you want to go deep in QloApps development, you need to utilize the ObjectModel class. This is the fundamental object of QloApps's object relational model. It very well may be overridden but with great precaution. 
 
-It is an Active Record sort of class (see: http://en.wikipedia.org/wiki/Active_record_pattern). The table credits or view ascribes of QloApps' database are typified in this class. Subsequently, the class is attached to a database record. After the object has been started up, another record is added to the database. Each object recovers its information from the database; when an object is updated, the record to which it is tied is updated also. The class executes accessors for each property.
+It is an Active Record sort of class (see: http://en.wikipedia.org/wiki/Active_record_pattern). The table property or views related to QloApps' database are written in this class. Subsequently, the class is attached to a database record. After a object has been started up, another record is added to the database. Each object recovers its information from the database. when an object is updated, the record to which it is tied is updated also. The class executes accessors for each property.
 
 ## Defining the model
 
-You must use the $definition static variable in order to define the model.
+You must use the `$definition` static variable in order to define the model.
 
 For instance:
 
