@@ -1,9 +1,17 @@
 #  Directory Structure
 
 Following is the directory structure of QloApps
-```
+
+
+::: dir
 ├── Adapter
 ├── admin
+│   ├──autoupgrade
+│   ├──backups
+│   ├──export
+│   ├──filemanager
+│   ├──import
+│   └── themes
 ├── cache
 ├── classes
 ├── config
@@ -17,6 +25,7 @@ Following is the directory structure of QloApps
 ├── img
 ├── install
 ├── js
+│   └── jquery
 ├── localization
 ├── log
 ├── mails
@@ -31,12 +40,13 @@ Following is the directory structure of QloApps
 ├── translations
 ├── upload
 └── webservice
-```
+:::
+
 
 ## Folder reference
 
 ### /Adapter
-*Coming Soon*
+Contains the default adapter classes providing interface to interact with Db, entity, hooks used in QloApps and much more. 
 
 ### /admin
 
@@ -45,12 +55,12 @@ This directory is named admin-dev when using QloApps from source code, and is re
 
 It contains the following subdirectories:
 
-- /autoupgrade: scratch directory for the 1-click upgrade module
-- /backups: contains database backups generated from the Back office
-- /export: contains data export files
-- /filemanager: sources for the Back office file manager
-- /import: contains data import files
-- /themes: contains the templates for two back office themes, default and new-theme
+- `/autoupgrade`: scratch directory for the 1-click upgrade module
+- `/backups`: contains database backups generated from the Back office
+- `/export`: contains data export files
+- `/filemanager`: sources for the Back office file manager
+- `/import`: contains data import files
+- `/themes`: contains the templates for two back office themes, default and new-theme
 
 
 
@@ -73,18 +83,16 @@ Contains bootstrapping and configuration files. Unless asked, you should never e
 ### /controllers
 It Contains controllers – as in MVC (Model-View-Controller), the software architecture used by QloApps. Each file controls a specific part of QloApps.
 
-- /admin: contains legacy controllers for the Back Office
-- /front: contains controllers for the Front Office
+- `/admin`: contains legacy controllers for the Back Office
+- `/front`: contains controllers for the Front Office
 
 ### /Core
 *Coming Soon*
 
 ### /css
-*Coming Soon*
+This folder used to contain style sheets for jquery plugins, now those files are moved to /js/jquery directory.
 
 ### /docs
-*Coming Soon*
-
 Contains documentation files, licenses, sample import files, and more.
 
 ### /download
@@ -95,18 +103,18 @@ Contains your virtual products, which can be downloaded by the customers who bou
 
 Contains all of QloApps’ default images, icons and picture files – which are not belongs to themes.
 
--  /admin: Back office images
-- /c: Category pictures
-- /cms: CMS pictures
-- /co: Attributes (colors) pictures
-- /flags: Country & language flags
-- /genders: Gender (Shop Parameters > Customers > Client titles) pictures
-- /jquery-ui: jQuery UI images
-- /l: Language pictures
-- /os: Order state pictures
-- /s: Carrier pictures
-- /t: Tab icons
-- /tmp: Temporary pictures
+- `/admin`: Back office images
+- `/c`: Category pictures
+- `/cms`: CMS pictures
+- `/co`: Attributes (colors) pictures
+- `/flags`: Country & language flags
+- `/genders`: Gender (Shop Parameters > Customers > Client titles) pictures
+- `/jquery`-ui: jQuery UI images
+- `/l`: Language pictures
+- `/os`: Order state pictures
+- `/s`: Carrier pictures
+- `/t`: Tab icons
+- `/tmp`: Temporary pictures
 
 
 ### /install
@@ -128,7 +136,7 @@ The CLDR database is also located in this directory.
 
 
 ### /log
-*Coming Soon*
+This directory contains exceptions logs generated in QloApps
 
 ### /mails
 
@@ -154,17 +162,18 @@ It also includes the core.js library.
 ### /tools
 This  has development tools. This directory is not included in release package.
 This directory contains the following subdirectories.
-- /assets : Script that allows building all static assets from sources.
-- /build : it is used to create release package
-- /foreignkeyGenerator : Creates forign keys for all tables (for educational purposes only)
--/profiling : Profiling tools for legacy classes
+- `/assets` : Script that allows building all static assets from sources.
+- `/build` : it is used to create release package
+- `/foreignkeyGenerator` : Creates forign keys for all tables (for educational purposes only)
+- `/profiling` : Profiling tools for legacy classes
 
 ### /translations
 
 Contains zip packages that you downloaded for the translation packs.
 
 ### /upload
-*Coming Soon*
+This directory contains files uploaded by customer through contact page or customizations.
+
 ### /webservice
 
 Provides the Webservice API 's main Endpoint.
