@@ -4,19 +4,23 @@ The Dispatcher in QloApps manages redirections of URL.
 
 i.e. QloApps uses one file index.php only instead of using multiple files like cart.php, order.php or product.php in the root folder.
 
+Dispacher handles all the requests in QloApps it is responsible for loading and executing contoller.
 Further, Friendly URLs or URL rewriting is also supported by the Dispatcher. 
 So URLs in QloApps looks like below in case of URL-rewriting is off -
 
-```php
+::: tip Page links
 http://qloapps.example.com/index.php?controller=category&id_category=4&id_lang=1
+
 http://qloapps.example.com/index.php?controller=product&id_product=2&id_lang=2
-```
+:::
+
 When you enable URL-rewriting in QloApps the Urls will look like below -
 
-```php
+::: tip Friendly URL
 http://qloapps.example.com/en/4-nainital
+
 http://qloapps.example.com/fr/2-kings-hotels.html
-```
+:::
 
 In QloApps there are many advantages of this -
 
