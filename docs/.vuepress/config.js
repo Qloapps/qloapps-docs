@@ -80,8 +80,9 @@ module.exports = {
                 path: '/module_development/',
                 collapsable: true,
                 children: [
-                    ['module_development/folder-structure', 'Folder Structure'],
                     ['module_development/creation', 'Creation'],
+                    ['module_development/folder-structure', 'Folder Structure'],
+                    ['module_development/configuration', 'Adding a configuration page'],
                     ['module_development/module-translations', 'Translations'],
                 ]
             },

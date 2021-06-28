@@ -3,7 +3,7 @@
 Before starting the development of a module you must know the file structure of the module.
 Many files and folders are used in the modules for different purposes. Below are the files and folders which a module can consists -
 
-```
+::: dir
 .
 ├── config.xml
 ├── controllers
@@ -26,7 +26,7 @@ Many files and folders are used in the modules for different purposes. Below are
         ├── admin
         ├── front
         └── hook
-```
+:::
 
 ## Reference
 
