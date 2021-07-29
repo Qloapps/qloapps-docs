@@ -89,6 +89,12 @@ module.exports = {
                 title: 'Webservice API',
                 path: '/webservice/',
                 collapsable: true,
+                children: [
+                    ['webservice/enable_webservices', 'Enable Webservice'],
+                    ['webservice/basic-topics', 'Basics | First Steps'],
+                    ['webservice/qloapps-webservice-lib', 'QloApps Webservice Library'],
+                    ['webservice/advance-api-uses', 'Advance Api Uses'],
+                ]
             },
             {
                 title: 'Theme',
