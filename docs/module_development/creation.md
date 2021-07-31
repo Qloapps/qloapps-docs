@@ -1,25 +1,24 @@
 
 # Start Creating A Module
 
-To understand the module in QloApps lets create a module.
-
+To understand the module in QloApps let's create a module.
 We take the name of the module as **myqlomodule**.
+Let us do this step-by-step process.
 
-Lets do this step by step process.
+- In the first step, create a module folder. The folder's name must be the same as the name of the module and in lowercase in the /modules folder.
 
-- At the first step, create a module folder. Folder's name must be same as the name of the module and in lowercase in the /modules folder.
+Note: *only alphanumerical characters, the hyphen, and the underscore, all in lowercase: /myqlomodule.*
 
-Note: *only alphanumerical characters, the hyphen and the underscore, all in lowercase: /myqlomodule.*
-
-- In the module folder, Create module main PHP file with same name as the module folder's name : **myqlomodule.php**
-This main file handles most of the processing of the module.
+- In the module folder, Create module main PHP file with the same name as the module folder's name: **myqlomodule.php** This main file handles most of the processing of the module..
 
 *To create a basic module the above steps are enough. More files and folders are added as per the requirements.*
 
-**Lets walk through the module's main file's contents. PHP file code must be stareted with the below code -**
-#### First check the QloApps vesion constant.
-This constant always present. It it is not defined then exit the module and do not load the module.
-**This prevents the malicious users to load this file directly.**
+**Let's walk through the module's main file's contents. PHP file code must be started with the below code -**
+
+#### First check the QloApps version constant.
+This constant is always present. It is not defined then exit the module and do not load the module. 
+**This prevents malicious users to load this file directly.**
+
 ```php
 <?php
 if (!defined('_PS_VERSION_')) {
@@ -28,8 +27,7 @@ if (!defined('_PS_VERSION_')) {
 ```
 
 #### Create the module's Main Class.
-The main file has a class with name same as the module's folder name but in the CamelCase letters. This class will extend any class derived from **Module class**.
-for example PaymentModule, ModuleGridEngine, ModuleGraph etc classes are extended for specific needs.
+The main file has a class with a name the same as the module's folder name but in the CamelCase letters. This class will extend any class derived from the Module class. for example, PaymentModule, ModuleGridEngine, ModuleGraph, etc classes are extended for specific needs.
 
 myqlomodule.php
 ```php
@@ -43,11 +41,11 @@ class MyQloModule extends Module
 }
 ```
 
-*So this is the minimum requirement to show your module in the module list. Now if you put your module in the /modules folder then in the backoffice modules list, this module will be seen in the "Other Modules" section.*
+*So this is the minimum requirement to show your module in the module list. Now if you put your module in the /modules folder then in the back-office modules list, this module will be seen in the "Other Modules" section.*
 
 #### Create constructor method of the class
 
-In object oriented programming, the constructor method  is called when an object is created of a class.
+In object-oriented programming, the constructor method  is called when an object is created of a class.
 In QloApps this method is called first whenever a module is loaded.
 So we can put most of the details of the module in this method.
 
@@ -78,7 +76,7 @@ class MyQloModule extends Module
   }
 }
 ```
-Lets explain things used in constructor method line by line.
+Let us explain things used in the constructor method line by line.
 
 | line                                                                       | Description                                                                                          | Detail                                                                                                                                                                                     |
 | :------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -158,11 +156,11 @@ Lets perform below tasks
 ```php
 public function install()
 {
-  if (!parent::install() ||
-    !$this->registerHook('displayHeader') ||
-    !$this->registerHook('leftColumn') ||
-    !Configuration::updateValue('MYQLOMODULE_NAME', 'Module name in configuration table')
-    !$this->createModuleTables()
+  if (!parent::install() 
+    || !$this->registerHook('actionFrontControllerSetMedia') 
+    || !$this->registerHook('displayLeftColumn') 
+    || !Configuration::updateValue('MYQLOMODULE_NAME', 'Module name in configuration table') 
+    || !$this->createModuleTables()
   ) {
     return false;
   }
@@ -251,13 +249,4 @@ You have to put this file in the root folder of the module. Modules's logo bring
 
 **In the PREFIX_module table, A row is added for the module while module installation. This table contains installed modules information.**
 
-This is how you can create a basic module. Try to develop a basic module and intall it on QloApps.
-
-<style>
-	th {
-	  font-size: 16px;}
-	td {
-	  font-size: 14px;}
-	  td > code {
-	  font-size: 15px!important;}
-</style>
+This is how you can create a basic module. Try to develop a basic module and install it on QloApps.

@@ -83,6 +83,7 @@ module.exports = {
                     ['module_development/creation', 'Creation'],
                     ['module_development/folder-structure', 'Folder Structure'],
                     ['module_development/configuration', 'Adding a configuration page'],
+                    ['module_development/Frontoffice-controller', 'Display Content in front office'],
                     ['module_development/module-translations', 'Translations'],
                 ]
             },

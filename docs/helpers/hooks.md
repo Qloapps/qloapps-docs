@@ -1,23 +1,121 @@
 # Hooks
 
+In QloApps,hooks are associate your content and actions to some specific QloApps events. Hooks can be used to display content in front office or to trigger a custom function when a customer sign up
+
+
+## Managing Hooks
+
+There are two types of hooks in QloApps 
+- **Display hooks** : These hooks are responsible to display something whether on the front-end or backend. 
+- **Action hooks** : Any specific events or data operations that take place in QloApps will trigger this hook type of hook.
+
+**Display Hooks** are used to insert content in a page.
+
+Below are some hooks which can add content on the home page.
+
+| Hook               | Description                                      |
+| :----------------- | :----------------------------------------------- |
+| displayHeader      | Displays the content in the page's header.       |
+| displayTop         | Displays the content in the page's top.          |
+| displayLeftColumn  | Displays the content in the page's left column.  |
+| displayHome        | Displays the content in the page's central.      |
+| displayRightColumn | Displays the content in the page's right column. |
+| displayFooter      | Displays the content in the page's footer.       |
+
+**Action Hooks** are used to execute some actions before/after any QloApps event.
+
+Below are some hooks which can get and updated data in QloApps.
+
+| Hook                       | Description                                       |
+| :------------------------- | :------------------------------------------------ |
+| actionValidateOrder        | Event called when order is validated and ordered. |
+| actionCartSummary          | Event called when QloApps request cart summary.   |
+| actionCustomerLogoutBefore | Event called before customer logout is processed. |
+| actionProductSave          | Event called after a room type is save.           |
+
+### Executing a Hook
+
+You can manually call any hook in QloApps. 
+
+#### How to call Hooks in a controller?
+To call a hook in a controller, Call the `hookExec()` method with the name of the hook. 
+`Module::hookExec('Hook_Name');`
+
+See the below example:
+```php
+Hook::exec('displayTop');
+```
+
+#### How to call Hooks in a theme?
+In a template file(.tpl), write the name of the hook with the hook function. You can also add the module's name that you want the hook executes.
+
+See the below example:
+```php
+{hook h='displayRightColumn'}
+```
+For a Specific module
+```php
+{hook h='displayRightColumn' mod='moduleName'}
+```
+
+### Using a hook
+
+#### How to use Hooks in a module?
+Now when these hooks are executed we would want to perform our operations through a module.
+
+The hook must be registered using the `registerHook()` method for a module to respond. Registration is done usually during the installation of a module.
+```php
+public function install()
+{
+    return parent::install() && $this->registerHook('displayHeader');
+}
+```
+
+Create a non-static public method which name starts with "hook" keyword.
+
+To add your code to a hook, you must create a non-static public method, starting with the "hook" keyword followed by the name of the hook to use. Only one argument (array of contextual information) is received by this method.
+```php
+
+public function hookDisplayHeader($params)
+{
+    // write your code
+}
+```
+### How to create your own hook?
+To add a new QloApps hook, add a new record in the **ps_hook** table in the database.
+
+You can do it by below query -
+```php
+INSERT INTO `ps_hook` (`name`, `title`, `description`) VALUES ('Hook_Name', 'your hook name', 'your hook description');
+```
+
+But and easy method is provided by the QloApps - 
+
+```php
+$this->registerHook('HookName');
+```
+If the hook name does not exist in the system the QloApps will create a new hook.
+
+Now you will need to execute this hook at your desired time and other modules and register this hook and perform operation during your code execution.
+
 ## Hooks Lists
 
 We have two naming schemes in QloApps hooks
-- action hooks: Any specific events that take place in QloApps will trigger this hook
-- display hooks: These hooks are responsible to display something whether on front-end or backend. 
+- action hooks: Any specific events or data operations that take place in QloApps will trigger this hook type of hook.
+- display hooks: These hooks are responsible to display something whether on the front-end or backend. 
 
 ### Front-office hooks
 
 #### Home page and general site pages
 
-| Hook Name          | Description                                                                                       | Anticipation in $param (Psuedocode)                                                                                                               |
-| ------------------ | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| displayTop         | Call this hook in the page's header                                                               | N/A                                                                                                                                               |
+| Hook Name          | Description                                                                                       | Anticipation in $param (Psuedocode)                                                                                        |
+| ------------------ | ------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| displayTop         | Call this hook in the page's header                                                               | N/A                                                                                                                        |
 | displayRightColumn | Call this hook when loading the right column.                                                     | ```array( cart' => (object) Cart object);``` <br>Note that the Cart object can also be retrieved from the current Context. |
-| displayLeftColumn  | Call this hook when loading the left column.                                                      | N/A                                                                                                                                               |
-| displayHome        | Call this hook at the center of the homepage.                                                     | N/A                                                                                                                                               |
-| displayHeader      | Call this hook within the HTML `<head>` tags. Ideal location for adding JavaScript and CSS files. | N/A                                                                                                                                               |
-| displayFooter      | Call this hook in the page's footer.                                                              | N/A                                                                                                                                               |
+| displayLeftColumn  | Call this hook when loading the left column.                                                      | N/A                                                                                                                        |
+| displayHome        | Call this hook at the center of the homepage.                                                     | N/A                                                                                                                        |
+| displayHeader      | Call this hook within the HTML `<head>` tags. Ideal location for adding JavaScript and CSS files. | N/A                                                                                                                        |
+| displayFooter      | Call this hook in the page's footer.                                                              | N/A                                                                                                                        |
 
 #### Product page Or Room type page
 | Hook Name                 | Description                                                                                               | Anticipation in $param (Psuedocode)                            |
@@ -54,7 +152,7 @@ We have two naming schemes in QloApps hooks
 The hooks discussed in this section are specific to QloApps default mobile theme.
 
 The first four hooks in the list are in QloApps' internal hooks database, so the user can attach an action/interface to these hooks using the Modules > Positions page.
-All the other hooks  does not exist in the the internal hooks database  but are there in the mobile theme TPL files. Although the developer can still use them to attach content to specific part of the code.
+All the other hooks  do not exist in the internal hooks database  but are there in the mobile theme TPL files. Although the developer can still use them to attach content to a specific part of the code.
 
 Here is the list
 - displayMobileTopSiteMap	 
@@ -100,20 +198,20 @@ Here is the list
 | actionOrderSlipAdd          | Called during the creation of a credit note, right after it has been created.      | `array(` <br> `'order' => Order oject,` <br> `'productList' => array(` <br> `(int) product ID 1,` <br> `(int) product ID 2,` <br> `...,` <br> `(int) product ID n` <br> `),` <br> `'qtyList' => array(` <br> `(int) quantity 1,` <br> `(int) quantity 2,` <br> `...,` <br> `(int) quantity n ` <br> ` )` <br> `);` <br> The order of IDs and quantities is important! |
 
 #### Products
-| Hook Name                        | Description                                                                                                                                               | Anticipation in $param (Psuedocode)                                                                                                                                      |
-| -------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| actionProductSave                | Called when saving products.                                                                                                                              | `array(` <br> `'id_product' => (int) Product ID` <br> `); `                                                                                                              |
-| actionUpdateQuantity             | Called during an the validation of an order, the status of which being something other than "canceled" or "Payment error", for each of the order's items. | `array(` <br> `'id_product' => (int) Product ID,` <br> `'id_product_attribute' => (int) Product attribute ID,` <br> `'quantity' => (int) New product quantity` <br> `);` |
-| actionProductAttributeUpdate     | When product declination is updated, right after said update the hook is called.                                                                          | `array(` <br> `'id_product_attribute' => (int) Product attribute ID` <br> `);`                                                                                           |
-| actionProductAttributeDelete     | Called when a product declination is deleted.                                                                                                             | `array(` <br> `'product' => (object) ` <br> `Product object` <br> `);`                                                                                                   |
-| actionWatermark                  | Called when an image is added to a product, right after said addition.                                                                                    | `array(` <br> `'id_image' => ` <br> `(int) Image ID,` <br> `'id_product' => (int) Product ID` <br> `);`                                                                  |
-| displayAttributeForm             | Add fields to the form "attribute value".                                                                                                                 | N/A                                                                                                                                                                      |
-| displayAttributeGroupForm        | Add fields to the form "attribute group".                                                                                                                 | N/A                                                                                                                                                                      |
-| displayAttributeGroupPostProcess | Called when post-process in admin attribute group.                                                                                                        | N/A                                                                                                                                                                      |
-| displayFeatureForm               | Add fields to the form "feature".                                                                                                                         | N/A                                                                                                                                                                      |
-| displayFeaturePostProcess        | Called when post-process in admin feature.                                                                                                                | N/A                                                                                                                                                                      |
-| displayFeatureValueForm          | Add fields to the form "feature value".                                                                                                                   | N/A                                                                                                                                                                      |
-| displayFeatureValuePostProcess   | Called when post-process in admin feature value.                                                                                                          | N/A                                                                                                                                                                      |
+| Hook Name                        | Description                                                                                                                                            | Anticipation in $param (Psuedocode)                                                                                                                                      |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| actionProductSave                | Called when saving products.                                                                                                                           | `array(` <br> `'id_product' => (int) Product ID` <br> `); `                                                                                                              |
+| actionUpdateQuantity             | Called during the validation of an order, the status of which being something other than "canceled" or "Payment error", for each of the order's items. | `array(` <br> `'id_product' => (int) Product ID,` <br> `'id_product_attribute' => (int) Product attribute ID,` <br> `'quantity' => (int) New product quantity` <br> `);` |
+| actionProductAttributeUpdate     | When product declination is updated, right after said update the hook is called.                                                                       | `array(` <br> `'id_product_attribute' => (int) Product attribute ID` <br> `);`                                                                                           |
+| actionProductAttributeDelete     | Called when a product declination is deleted.                                                                                                          | `array(` <br> `'product' => (object) ` <br> `Product object` <br> `);`                                                                                                   |
+| actionWatermark                  | Called when an image is added to a product, right after said addition.                                                                                 | `array(` <br> `'id_image' => ` <br> `(int) Image ID,` <br> `'id_product' => (int) Product ID` <br> `);`                                                                  |
+| displayAttributeForm             | Add fields to the form "attribute value".                                                                                                              | N/A                                                                                                                                                                      |
+| displayAttributeGroupForm        | Add fields to the form "attribute group".                                                                                                              | N/A                                                                                                                                                                      |
+| displayAttributeGroupPostProcess | Called when post-process in admin attribute group.                                                                                                     | N/A                                                                                                                                                                      |
+| displayFeatureForm               | Add fields to the form "feature".                                                                                                                      | N/A                                                                                                                                                                      |
+| displayFeaturePostProcess        | Called when post-process in admin feature.                                                                                                             | N/A                                                                                                                                                                      |
+| displayFeatureValueForm          | Add fields to the form "feature value".                                                                                                                | N/A                                                                                                                                                                      |
+| displayFeatureValuePostProcess   | Called when post-process in admin feature value.                                                                                                       | N/A                                                                                                                                                                      |
 
 #### Statistics
 | Hook Name                    | Description                                         | Anticipation in $param (Psuedocode) |
@@ -126,100 +224,4 @@ Here is the list
 | Hook Name             | Description                                                                                                             | Anticipation in $param (Psuedocode) |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | displayAdminCustomers | Called when a client's details are displayed, right after the list of the clients groups the current client belongs to. | N/A                                 |
-
-## Managing Hooks
-
-In QloApps, you can associate your content and actions to some specific QloApps events through Hooks.
-
-There are two types of hooks in QloApps 
-- Display hooks
-- Action hooks
-
-**Display Hooks** are used to insert content in a page.
-
-Below are some hooks which can add content on the home page.
-
-| Hook               | Description                                      |
-| :----------------- | :----------------------------------------------- |
-| displayHeader      | Displays the content in the page's header.       |
-| displayTop         | Displays the content in the page's top.          |
-| displayLeftColumn  | Displays the content in the page's left column.  |
-| displayHome        | Displays the content in the page's central.      |
-| displayRightColumn | Displays the content in the page's right column. |
-| displayFooter      | Displays the content in the page's footer.       |
-
-**Action Hooks** are used to execute some actions before/after any QloApps event.
-For example : delete some specific customer related data before deleting customer from QloApps.
-
-### Executing a Hook
-
-You can manually call any hook in QloApps. 
-
-#### How to call Hooks in a controller?
-To call a hook in a controller, Call the `hookExec()` method with the name of the hook. 
-`Module::hookExec('Hook_Name');`
-
-See the below example:
-```php
-$this->context->smarty->assign('HOOK_TOP', Module::hookExec('displayTop'));
-```
-
-#### How to call Hooks in a theme?
-In a template file(.tpl), write the name of the hook with the hook function. You can also add the module's name that you want the hook execute.
-
-See the below example:
-```php
-{hook h='displayRightColumn'}
-```
-For a Specific module
-```php
-{hook h='displayRightColumn' mod='moduleName'}
-```
-
-### Using a hook
-
-#### How to use Hooks in a module?
-Now when these hooks are executed we would want to perform our operations through module.
-
-The hook must be registered using the `registerHook()` method for module to respond. Registration is done usually during the installation of module.
-```php
-public function install()
-{
-    return parent::install() && $this->registerHook('displayHeader');
-}
-```
-
-Create a non-static public method which name starts with "hook" keyword.
-
-To add your code to a hook, you must create a non-static public method, starting with the "hook" keyword followed by the name of the hook to use. Only one argument (array of the contextual information) is recievd by this method.
-```php
-
-public function hookDisplayHeader($params)
-{
-    // write your code
-}
-```
-### How to create your own hook?
-To add a new QloApps hook, add a new record in the **ps_hook** table in the database.
-
-You can do it by below query -
-```php
-INSERT INTO `ps_hook` (`name`, `title`, `description`) VALUES ('Hook_Name', 'your hook name', 'your hook description');
-```
-
-But and easy method is provided by the QloApps - 
-
-```php
-$this->registerHook('HookName');
-```
-If hook name does not exist in the system the QloApps will create a new hook.
-
-<style>
-	th {
-	  font-size: 16px;}
-	td {
-	  font-size: 14px;}
-	  td > code {
-	  font-size: 15px!important;}
-</style>
 

@@ -1,3 +1,5 @@
+# Database Query Class
+
 To create a SQL queries you will need DBQuery class which is a query builder. For an example, 
 
 ```php

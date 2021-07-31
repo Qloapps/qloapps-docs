@@ -1,57 +1,59 @@
-# Database Structure
+# Standards of Coding
 
-In QloApps the database tables start with a prefix for example PREFIX_orders. You have the option to change the prefix of the tables on the installation step where you need to fill your database data and associate a database.
+We know how much consistency is important, especially if we are writing open-source code. This is because the source code is used by a lot of people and everyone keeps an eye on it. Hence, these people find bugs and take corrective actions to fix them.
 
-We utilize lowercase while naming, and isolated the words with an underscore character ("_"):
+Because of these reasons, when you are writing a theme, a plugin, or a key patch, you must follow the listed guidelines when you are writing something for QloApps.They are the ones that the developers of QloApps stick to and when you follow them then there is a guarantee that you can easily integrate your code with QloApps.
 
-Here are few examples:
-- PREFIX_customer
-- PREFIX_cart
-- PREFIX_order
-- PREFIX_module
-- PREFIX_product
+In brief, to keep the code easy to read and maintain it is important to have code consistency.
 
-Right when a table develops the associations between two elements, the names of the two substances are referred to in the table's name. For instance, PREFIX_customer_group joins customers to their assigned groups.
 
-A few nuances to note about tables:
+**The standards, conventions, and guidelines for QloApps development are as follows:**
 
-- Tables that contain translations must end with the _lang postfix. For example, PREFIX_product_lang has all the translations for the PREFIX_product table.
+- **PHP code**
+ QloApps retain the [PSR-1](https://www.php-fig.org/psr/psr-1/) and [PSR-2](https://www.php-fig.org/psr/psr-2/), along with [some good details from Symfony](https://symfony.com/doc/current/contributing/code/standards.html).
+- **JavaScript code**
+ In QloApps we follow the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
+- **HTML and CSS code**
+ [coding standards of Mark Otto](https://codeguide.co/) are followed by QloApps. The [Bootstrap framework](https://getbootstrap.com/) is created by Mark.
+- **Twig / Smarty code**
+ Same standards as with HTML and CSS.
+- **Commits & Pull-requests conventions**
+ We select the best practices to be formalized
 
-- Tables that contain the records interfacing with a specific shop must end with the _shop addition. For instance, PREFIX_category_shop contains the circumstance of each class depending upon the store.
+## SQL guidelines
 
-There is furthermore a few standard practices for data sections inside a table:
+For Table
+ 1. Table names should begin with the "_DB_PREFIX_" prefix.
+ 2. Table names should have the exact ditto name as the object they reflect: "prefix_cart".
+ 3. Table names have to be singular: "prefix_order".
+ 4. Save the data for languages has in a table that is named exactly the same as the object's table, and with the "_lang" suffix: "prefix_product_lang".
 
-- Use the id_lang field to store the language related with a record.
-
-- Use the id_shop field to store the store related with a record.
-
-## Database content
-
-Database substance is saved in XML records in introduce/information/xml/ as per defualt settings. Every element has one record (= table).
-
-These records are utilized during the QloApps installation too.
-
-## Structure and content upgrades
-
-### Defining changes
-
-As soon as QloApps is installed, the default structure and substance records we saw are not utilized any longer.
-
-On the off chance that another release of QloApps must carry changes to the current database, an upgrade document must be made along with the ` db_structure.sql`  update. This SQL document will be put away in the ` /install/upgrade/sql/ `.
-
-Its name is the QloApps variant on which the change will be applied.
-
-## Applying changes
-
-Applying the changes on your database can be done:
-- by reinstalling the shop
-- from a previous version of QloApps, by copying the new files and calling the PHP script ` install/upgrade/upgrade.php`
-
-QloApps lists the upgrade files waiting to be applied, by selecting the names fitting between the configuration property ` PS_VERSION_DB` and the constant `_PS_INSTALL_VERSION_` defined in `install/install_version.php`.
-
-In the first part of this article, we talked about entities being managed only by Doctrine. Applying the changes on the database is done with the following command:
-
-```php
-php bin/console prestashop:schema:update-without-foreign
-```
-
+For SQL queries
+ 1. Write keywords in uppercase.
+ ```SQL
+  SELECT `firstname`
+  FROM `'._DB_PREFIX_.'customer`
+  ```
+ 2. Always use Back quotes ("`") around SQL field names and table names.
+ ```SQL
+    SELECT p.`foo`, c.`bar`
+    FROM `'._DB_PREFIX_.'product` p, `'._DB_PREFIX_.'customer`  
+ ```
+ 3. Name Table aliases by taking the first letter of each word, and must be lowercase.
+ ```SQL
+    SELECT p.`id_product`, pl.`name`
+    FROM `'._DB_PREFIX_.'product` p
+    NATURAL JOIN `'._DB_PREFIX_.'product_lang` pl
+ ```
+ 4. Whenever there is a conflict between table aliases, the second character is also used in the name.
+ ```SQL
+    SELECT ca.`id_product`, cu.`firstname`
+    FROM `'._DB_PREFIX_.'cart` ca, `'._DB_PREFIX_.'customer`
+ ```   
+ 5. Create a new line for each clause.
+ ```SQL
+    $query = 'SELECT pl.`name`
+    FROM `'._DB_PREFIX_.'product_lang` pl
+    WHERE pl.`id_product` = 17';
+ ```   
+ 6. It is forbidden to make a JOIN in a WHERE clause.

@@ -5,9 +5,9 @@ Linking to the database
 /**
  * @var \Db $db
  */
-$db = \Db::getInstance();
+$db = Db::getInstance();
 ```
-The primary call to this technique introduces the link to the database and return similar link to all the following calls. `$db` in this model will be reused in all the following models.
+The primary call to this technique introduces the link to the database and returns a similar link to all the following calls. `$db` in this model will be reused in all the following models.
 
 ## Db class methods
 
@@ -21,12 +21,12 @@ $result = $db->executeS($request);
 ```
 This method deals with raw SQL requests so the `_DB_PREFIX_` must be used.
 
-Returns an affiliated array containing the all the matching rows for the query.
+Returns an affiliated array containing all the matching rows for the query.
 
 ### Execute a SELECT request with only one row
 
 ```php
-$request = "SELECT `first_name`, `last_name` FROM `' . _DB_PREFIX_ . 'some_table` ...";
+$request = 'SELECT `first_name`, `last_name` FROM `' . _DB_PREFIX_ . 'some_table` ...';
 
 /** @var array $customer */
 $customer = $db->getRow($request);
@@ -38,7 +38,7 @@ Returns an affiliated array containing the first row matching the resultant quer
 ### Execute a SELECT request with only a single value
 
 ```php
-$request = "SELECT `count('sales')` FROM `' . _DB_PREFIX_ . 'some_table` ...";
+$request = 'SELECT `count('sales')` FROM `' . _DB_PREFIX_ . 'some_table` ...';
 
 /** @var string|false $salesCount */
 $salesCount = $db->getValue($request);
@@ -55,7 +55,7 @@ $request = "INSERT INTO `' . _DB_PREFIX_ . 'some_table` (`id_table`) VALUES (10)
 /** @var bool */
 $db->execute($request);
 ```
-This will return an bool whether a query is executed successfully or not. This function shoul does not be used for select queries. 
+This will return a boolean whether a query is executed successfully or not. This function should not be used for select queries. 
 
 ### Insert a row in the database
 ```php
@@ -68,7 +68,7 @@ $result = $db->insert('db_table', array(
 ```
 `_DB_PREFIX_` will be added to the table name as a prefix automatically.
 
-The outcome is boolean saying if the request was appropriately executed or not.
+This will return a boolean saying if the request was appropriately executed or not.
 
 ### Update a row in the database
 
@@ -81,4 +81,4 @@ $result = $db->update('db_table', array(
 ```
 `_DB_PREFIX_` will be added to the table name as a prefix automatically.
 
-The outcome is boolean saying if the request was appropriately executed or not.
+This will return a boolean saying if the request was appropriately executed or not.
