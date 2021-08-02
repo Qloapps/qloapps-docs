@@ -1,6 +1,6 @@
 # How to display content on the front office
 
-In order to display your module content on the front, you need to add a few hook support. This can be done by implementing the hooks' method which is done in the install()) method, using the registerHook() method:
+In order to display your module content on the front, you need to add a few hook support. This can be done by implementing the hooks' method which is done in the install() method, using the registerHook() method:
 
 ```php
 public function install()
@@ -126,7 +126,7 @@ div#mymodule_block_home p {
 
 Now reload your category page: the content of the template should appear on the left column (it will appear on the top if you have indeed moved it at the top of the "Left Column" hook during the transplanting part).
 
-![Front Left Hook](..//assets/images/database/front-hook-block.png)
+![Front Left Hook](..//assets/images/module_development/front-hook-block.png)
 
 ## Add New Page in the theme
 
@@ -161,7 +161,7 @@ Let's explore display.php, our first QloApps front controller is stored in `/con
 
 Save both files in their respective folders, and reload your shop's homepage, then click on the "Click me!", and voilà! You have your link. With just a few lines, the result is already much better, with the "Welcome" line neatly placed between the header, footer, and columns!
 
-![Front controller](..//assets/images/database/front-controller.png)
+![Front controller](..//assets/images/module_development/front-controller.png)
 
 It is only a first step, but this gives you an idea of what is possible if you follow the templating rules.
 

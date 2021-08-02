@@ -82,8 +82,10 @@ module.exports = {
                 children: [
                     ['module_development/creation', 'Creation'],
                     ['module_development/folder-structure', 'Folder Structure'],
-                    ['module_development/configuration', 'Adding a configuration page'],
-                    ['module_development/Frontoffice-controller', 'Display Content in front office'],
+                    ['module_development/classes', 'Module classes'],
+                    ['module_development/configuration', 'Adding a Configuration page'],
+                    ['module_development/Frontoffice-controller', 'Display Content in Front Office'],
+                    ['module_development/admin-controller', 'Manage Module through Admin Controler'],
                     ['module_development/module-translations', 'Translations'],
                 ]
             },

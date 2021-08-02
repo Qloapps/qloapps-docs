@@ -244,5 +244,5 @@ public function getContent()
 }
 ```
 
-we have explained the complete process of saving daata in [The getContent() method](#the-getcontent-method) 
+we have explained the complete process of saving data in [The getContent() method](#the-getcontent-method) 
 
