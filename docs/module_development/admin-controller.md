@@ -1,10 +1,10 @@
 # Admin Controller
 
 
-## Create Admin Controller 
+##  Create Tab for Admin Controller 
 To create an admin controller we will first need to create an entry of that admin controller’s class in `_DB_PREFIX_.’tab` table. And generally, we make all these entries at the time of module installation.
 
-There are two options to create and admin module controller : 
+There are two options to create admin module controller : 
 - Create a tab in back-office menu for the admin controller
 - Create a hidden admin controller which can be opened through custom link.
 
@@ -127,5 +127,81 @@ public function getContent()
 }
 ```
 
-In the above example instead of opening configuration page when config button is clicked the admin controller will be opened. 
+In the above example when admin will click on config button the admin controller will be opened instead of configuration page.
+
+
+## Create Admin controller
+
+After creating tab for admin controller next step will be to declare admin controller. Lets create a controller file for AdminMyModule which will have controller in its suffix such as `AdminMyModuleController.php` and place the file in `/controller/admin` directory.
+
+Our admin controller will be used to manage data in table (my_product_list). 
+
+``` php
+class AdminAddHotelController extends ModuleAdminController
+{
+    public function __construct()
+    {
+        $this->bootstrap = true;
+        $this->table = 'my_product_list';
+        $this->className = 'MyProductList';
+        $this->identifier = 'id';
+
+        parent::__construct();
+
+        $this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'product_lang` pl
+        ON (pl.`id_product` = a.`id_product` AND pl.`id_lang` = '.$this->context->language->id.')';
+        $this->_join .= 'LEFT JOIN `'._DB_PREFIX_.'customer` c
+        ON (c.`id_customer` = a.`id_customer`)';
+
+        $this->_select = ' pl.`name` as room_type_name, CONCAT(c.`firstname`, ' ', c.`lastname`) as full_name'; 
+
+        $this->fields_list = array(
+            'id' => array(
+                'title' => $this->l('ID'),
+                'align' => 'center',
+            ),
+            'room_type_name' => array(
+                'title' => $this->l('Room Type'),
+                'align' => 'center',
+                'filter_key' => 'pl!name',
+            ),
+            'full_name' => array(
+                'title' => $this->l('Customer Name'),
+                'align' => 'center',
+            ),
+            'active' => array(
+                'align' => 'center',
+                'title' => $this->l('Status'),
+                'active' => 'status',
+                'type' => 'bool',
+                'orderby' => false,
+            ),
+        );
+    }
+
+    public function renderList()
+    {
+        $this->addRowAction('edit');
+        $this->addRowAction('delete');
+
+        return parent::renderList();
+    }
+}
+```
+
+When admin controller is loaded, the default view is a list containing the data inside the table declared in the controller.
+
+Here is a line by line explanation:
+1. `class AdminAddHotelController` every admin controller will extend `ModuleAdminController` which define the basic structure of the controller.
+2. `$this->bootstrap = true;` it determine does this controller need to load bootstrap classes. 
+3. Next we define the table and its properties which the controller will use to fetch data and display in the list or for creating and editing data.
+`$this->table` define the table from where data is to be fetched
+`$this->className` define the ObjectModel class for that table. It is used to determine the structure of the table.
+`$this->identifier` define the primary key colum of the table.
+4. Sometimes we need to get data from other tables, for that use `$this->_join` statement to join current tables with other tables and use `$this->select` to get columns from joined tables.
+By default the main table declared in the controller is aliased as 'a' keyword. In the example we have joined module table with product table and customer table in order to get customer name and room type name from `id_customer` and `id_product` respectively.
+5. `$this->fields_list` define list display structure in admin module controller. here we have defined the coulums in the list along with their titles and there filter key used when applying filter in list.
+6. `renderList()` function is used to add actions buttons in the list, using edit button we will open form page where we can edit or delete a specific tuple (row) from table.
+
+
 

@@ -42,9 +42,11 @@ class MyModuleDb
     {
         return array (
             // add your table structure here
-            'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'module_table_name` (
+            'CREATE TABLE IF NOT EXISTS `'._DB_PREFIX_.'my_product_list` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `id_product` int(11) NOT NULL DEFAULT '0',
+                `id_customer` int(11) NOT NULL,
+	            `active` tinyint(1) unsigned NOT NULL DEFAULT '0',
                 `date_add` datetime NOT NULL,
                 `date_upd` datetime NOT NULL,
                 PRIMARY KEY (`id`)
@@ -56,7 +58,7 @@ class MyModuleDb
     {
         return Db::getInstance()->execute(
             'DROP TABLE IF EXISTS
-            `'._DB_PREFIX_.'module_table_name`,'
+            `'._DB_PREFIX_.'my_product_list`,'
         );
     }
 
@@ -82,6 +84,6 @@ public function install()
 ```
 
 After we have created tables for our module, we will need to be able to add, remove or access data saved in tables. To manage this you will need to create a ObjectModel class (object-relational model) for each tables.<br>
-Create a new objectModel class in module's classes folder. This class will also contain any function that will be used to access data from its table.<br>
+Create a new objectModel class `MyProductList` in module's classes folder. This class will also contain any function that will be used to access data from its table.<br>
 For creating Object Model class Follow [The ObjectModel class](../database/object-model-class) guide.
 
