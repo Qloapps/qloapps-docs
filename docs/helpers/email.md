@@ -1,14 +1,14 @@
 # Send Emails in QloApps
 
-For the mail related functionalities QloApps uses **The Mail core class extends ObjectModel**
+For the mail related functionalities, QloApps uses **The Mail core class extends ObjectModel**
 
 For sending mails in QloApps use the **Mail::send()** method
 
-Let's understand it with an exmaple below.
-In the below example we are sending a mail from controller **modcontroller** from a module **mymodule**
+Let's understand it with an example below.
+In the below example we are sending a mail from controller **modcontroller.php** from a module **mymodule**
 
 ```php
-class mymoduleModcontrollerModuleFrontController extends ModuleFrontController
+class MyModuleModcontrollerModuleFrontController extends ModuleFrontController
 {
     public function initContent()
     {
@@ -16,7 +16,7 @@ class mymoduleModcontrollerModuleFrontController extends ModuleFrontController
         Mail::Send(
             (int)(Configuration::get('PS_LANG_DEFAULT')), // Which language template to be sent
             'email_template_name', // email template file to be use
-            ' email_subject', // email subject
+            'email_subject', // email subject
             array(
                 '{name}' => 'John Doe',
                 '{message}' => 'This is a test email' // in this array send data to the email template
@@ -33,15 +33,16 @@ In QloApps, Emails configuration is used to decide if use **SMTP connection or p
 
 ### Custom mail template
 - You can specify an email template path of your module in the **$template_path** parameter.
-- In Module folder you have to create the subfolder **mails** and under **mails/** a sub folder with languages.
+- In the Module folder you have to create the subfolder **mails** and under **mails/** a subfolder with languages.
 i.e. **\modules\module_name\mails\fr** for french.
 
 - In the created language folder(fr), create two files: first with extension .html and second with extension .txt
 
-- In second parameter, we send the name of the template.
-Two files in mails subfolders(languages folders) will be created in the module
+- In the second parameter, we send the name of the template.
+Two files in emails subfolders(languages folders) will be created in the module
     1. **modules\my_module_name\mails\en\email_template_name.html**
     2. **modules\my_module_name\mails\en\email_template_name.txt**
+<br>
 **email_template_name** is template's name in the following example.
 
 ```php

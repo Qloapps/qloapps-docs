@@ -80,8 +80,12 @@ module.exports = {
                 path: '/module_development/',
                 collapsable: true,
                 children: [
-                    ['module_development/folder-structure', 'Folder Structure'],
                     ['module_development/creation', 'Creation'],
+                    ['module_development/folder-structure', 'Folder Structure'],
+                    ['module_development/classes', 'Module classes'],
+                    ['module_development/configuration', 'Adding a Configuration page'],
+                    ['module_development/Frontoffice-controller', 'Display Content in Front Office'],
+                    ['module_development/admin-controller', 'Manage Module through Admin Controler'],
                     ['module_development/module-translations', 'Translations'],
                 ]
             },
@@ -119,5 +123,12 @@ module.exports = {
 
         ],
     },
-    plugins: ['@vuepress/back-to-top', 'code-copy']
+    plugins: [
+        ['@vuepress/back-to-top', 'code-copy'],
+        ['container', {
+            type: 'dir',
+            before: '<pre class="dir-container"><code>',
+            after: '</code></pre>'
+          }],
+    ]
 };

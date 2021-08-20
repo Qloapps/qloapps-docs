@@ -1,25 +1,24 @@
 
 # Start Creating A Module
 
-To understand the module in QloApps lets create a module.
-
+To understand the module in QloApps let's create a module.
 We take the name of the module as **myqlomodule**.
+Let us do this step-by-step process.
 
-Lets do this step by step process.
+- In the first step, create a module folder. The folder's name must be the same as the name of the module and in lowercase in the /modules folder.
 
-- At the first step, create a module folder. Folder's name must be same as the name of the module and in lowercase in the /modules folder.
+Note: *only alphanumerical characters, the hyphen, and the underscore, all in lowercase: /myqlomodule.*
 
-Note: *only alphanumerical characters, the hyphen and the underscore, all in lowercase: /myqlomodule.*
-
-- In the module folder, Create module main PHP file with same name as the module folder's name : **myqlomodule.php**
-This main file handles most of the processing of the module.
+- In the module folder, Create module main PHP file with the same name as the module folder's name: **myqlomodule.php** This main file handles most of the processing of the module..
 
 *To create a basic module the above steps are enough. More files and folders are added as per the requirements.*
 
-**Lets walk through the module's main file's contents. PHP file code must be stareted with the below code -**
-#### First check the QloApps vesion constant.
-This constant always present. It it is not defined then exit the module and do not load the module.
-**This prevents the malicious users to load this file directly.**
+**Let's walk through the module's main file's contents. PHP file code must be started with the below code -**
+
+#### First check the QloApps version constant.
+This constant is always present. It is not defined then exit the module and do not load the module. 
+**This prevents malicious users to load this file directly.**
+
 ```php
 <?php
 if (!defined('_PS_VERSION_')) {
@@ -28,8 +27,7 @@ if (!defined('_PS_VERSION_')) {
 ```
 
 #### Create the module's Main Class.
-The main file has a class with name same as the module's folder name but in the CamelCase letters. This class will extend any class derived from **Module class**.
-for example PaymentModule, ModuleGridEngine, ModuleGraph etc classes are extended for specific needs.
+The main file has a class with a name the same as the module's folder name but in the CamelCase letters. This class will extend any class derived from the Module class. for example, PaymentModule, ModuleGridEngine, ModuleGraph, etc classes are extended for specific needs.
 
 myqlomodule.php
 ```php
@@ -43,11 +41,11 @@ class MyQloModule extends Module
 }
 ```
 
-*So this is the minimum requirement to show your module in the module list. Now if you put your module in the /modules folder then in the backoffice modules list, this module will be seen in the "Other Modules" section.*
+*So this is the minimum requirement to show your module in the module list. Now if you put your module in the /modules folder then in the back-office modules list, this module will be seen in the "Other Modules" section.*
 
 #### Create constructor method of the class
 
-In object oriented programming, the constructor method  is called when an object is created of a class.
+In object-oriented programming, the constructor method  is called when an object is created of a class.
 In QloApps this method is called first whenever a module is loaded.
 So we can put most of the details of the module in this method.
 
@@ -78,52 +76,52 @@ class MyQloModule extends Module
   }
 }
 ```
-Lets explain things used in constructor method line by line.
+Let us explain things used in the constructor method line by line.
 
-| line | Description|Detail|
-| :--- |  :--- |  :--- |
-|public function __construct()|Creating constructor method in class|This is how you have to create the constructor method on the module's main class.|
-|$this->name = 'myqlomodule'; |class instance (this) attribute|This is an internal identifier attribute. Its value must be same as module's folder name and in lowercase|
-|$this->version = '1.0';|class instance (this) attribute|write the version of the module. Displayed in the modules list.|
-$this->author = 'Firstname Lastname';|class instance (this) attribute|write the name of the author of the module. Displayed in the modules list.|
-$this->tab = 'front_office_features';|class instance (this) attribute|Set the title of the section in which this module list in the backoffice module list. Displayed in the modules list.|
-|$this->need_instance = 0;|Handles module relationship and its environment|Set 1 if you want to load module's class on the "Modules" page in the backoffice. If set 0 then module will not be loaded and less resources are loaded at the time of module page load.|
-|$this->ps_versions_compliancy = array('min' => '1.5', 'max' => '1.6');|Handles module relationship and its environment|Set the versions compatibility of the modules between QloApps versions. Module will give an error if it is not compatible with QloApps version.|
-|$this->bootstrap = true;|Handles module relationship and its environment|Set true if template files of the module are built with the Bootstrap tool in mind else set false.|
-|parent::__construct();|Calls the parent class constructor method|Many actions are triggered from QloApps at this point. constuctor() method of parent class must called after the $this->name variable and before any use of translation method $this->l().|
-|$this->displayName = $this->l('Module display name');|Text strings used in the module. Text strings are encapsulated in the QloApps translation method l()|Name to display for the module. This name will be displayed in the module list in the backoffice.|
-|$this->description = $this->l('Module description here.');|Text strings used in the module. Text strings are encapsulated in the QloApps translation method l()|Module's description string. This message will be displayed in the module list in the backoffice.|
-|$this->confirmUninstall = $this->l('Are you sure you want to uninstall?');|Text strings used in the module. Text strings are encapsulated in the QloApps translation method l()|This is used in installation code. This message is for confirmation pop up to ensure if admin really want to uninstall the module.|
+| line                                                                       | Description                                                                                          | Detail                                                                                                                                                                                     |
+| :------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------- | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| public function __construct()                                              | Creating constructor method in class                                                                 | This is how you have to create the constructor method on the module's main class.                                                                                                          |
+| $this->name = 'myqlomodule';                                               | class instance (this) attribute                                                                      | This is an internal identifier attribute. Its value must be same as module's folder name and in lowercase                                                                                  |
+| $this->version = '1.0';                                                    | class instance (this) attribute                                                                      | write the version of the module. Displayed in the modules list.                                                                                                                            |
+| $this->author = 'Firstname Lastname';                                      | class instance (this) attribute                                                                      | write the name of the author of the module. Displayed in the modules list.                                                                                                                 |
+| $this->tab = 'front_office_features';                                      | class instance (this) attribute                                                                      | Set the title of the section in which this module list in the backoffice module list. Displayed in the modules list.                                                                       |
+| $this->need_instance = 0;                                                  | Handles module relationship and its environment                                                      | Set 1 if you want to load module's class on the "Modules" page in the backoffice. If set 0 then module will not be loaded and less resources are loaded at the time of module page load.   |
+| $this->ps_versions_compliancy = array('min' => '1.5', 'max' => '1.6');     | Handles module relationship and its environment                                                      | Set the versions compatibility of the modules between QloApps versions. Module will give an error if it is not compatible with QloApps version.                                            |
+| $this->bootstrap = true;                                                   | Handles module relationship and its environment                                                      | Set true if template files of the module are built with the Bootstrap tool in mind else set false.                                                                                         |
+| parent::__construct();                                                     | Calls the parent class constructor method                                                            | Many actions are triggered from QloApps at this point. constuctor() method of parent class must called after the $this->name variable and before any use of translation method $this->l(). |
+| $this->displayName = $this->l('Module display name');                      | Text strings used in the module. Text strings are encapsulated in the QloApps translation method l() | Name to display for the module. This name will be displayed in the module list in the backoffice.                                                                                          |
+| $this->description = $this->l('Module description here.');                 | Text strings used in the module. Text strings are encapsulated in the QloApps translation method l() | Module's description string. This message will be displayed in the module list in the backoffice.                                                                                          |
+| $this->confirmUninstall = $this->l('Are you sure you want to uninstall?'); | Text strings used in the module. Text strings are encapsulated in the QloApps translation method l() | This is used in installation code. This message is for confirmation pop up to ensure if admin really want to uninstall the module.                                                         |
 
 
 Below are the tab list in QloApps backoffice -
 
-| tab name | Section title|
-| :--- |  :--- |
-|administration|Administration|
-|advertising_marketing|	Advertising & Marketing|
-|analytics_stats	|Analytics & Stats|
-|billing_invoicing	|Billing & Invoices|
-|checkout	|Checkout|
-|content_management|	Content Management|
-|dashboard	|Dashboard|
-|emailing|	E-mailing|
-|export|	Export|
-|front_office_features|	Front Office Features|
-|i18n_localization|	I18n & Localization|
-|market_place	|Market Place|
-|merchandizing|	Merchandizing|
-|migration_tools|	Migration Tools|
-|mobile|	Mobile|
-|others|	Other Modules|
-|payments_gateways|	Payments & Gateways|
-|payment_security|	Payment Security|
-|pricing_promotion|	Pricing & Promotion|
-|quick_bulk_update	|Quick / Bulk update|
-|search_filter|	Search & Filter|
-|seo|	SEO|
-|slideshows	|Slideshows|
-|social_networks|	Social Networks|
+| tab name              | Section title           |
+| :-------------------- | :---------------------- |
+| administration        | Administration          |
+| advertising_marketing | Advertising & Marketing |
+| analytics_stats       | Analytics & Stats       |
+| billing_invoicing     | Billing & Invoices      |
+| checkout              | Checkout                |
+| content_management    | Content Management      |
+| dashboard             | Dashboard               |
+| emailing              | E-mailing               |
+| export                | Export                  |
+| front_office_features | Front Office Features   |
+| i18n_localization     | I18n & Localization     |
+| market_place          | Market Place            |
+| merchandizing         | Merchandizing           |
+| migration_tools       | Migration Tools         |
+| mobile                | Mobile                  |
+| others                | Other Modules           |
+| payments_gateways     | Payments & Gateways     |
+| payment_security      | Payment Security        |
+| pricing_promotion     | Pricing & Promotion     |
+| quick_bulk_update     | Quick / Bulk update     |
+| search_filter         | Search & Filter         |
+| seo                   | SEO                     |
+| slideshows            | Slideshows              |
+| social_networks       | Social Networks         |
 
 These parameters are minimum for the constructor method. You can add more necessary parameters later if needed. So this is all about constructor method in the main class.
 
@@ -146,7 +144,7 @@ public function install()
 }
 ```
 So above is the minimum code you need to write for the install method.
-We call the super class install() method. It returns true on successful installation and false if there is some problem occurred in the installation.
+We call the super class `install()` method. It returns true on successful installation and false if there is some problem occurred in the installation.
 
 **Now we will perform our actions on installation process like creating our database tables or entering data in the configuration table in the install process**
 
@@ -158,11 +156,11 @@ Lets perform below tasks
 ```php
 public function install()
 {
-  if (!parent::install() ||
-    !$this->registerHook('displayHeader') ||
-    !$this->registerHook('leftColumn') ||
-    !Configuration::updateValue('MYQLOMODULE_NAME', 'Module name in configuration table')
-    !$this->createModuleTables()
+  if (!parent::install() 
+    || !$this->registerHook('actionFrontControllerSetMedia') 
+    || !$this->registerHook('displayLeftColumn') 
+    || !Configuration::updateValue('MYQLOMODULE_NAME', 'Module name in configuration table') 
+    || !$this->createModuleTables()
   ) {
     return false;
   }
@@ -174,9 +172,9 @@ If any action fails then installation process stops with error message.
 
 #### **uninstall() method of class**
 
-To perform your actions while uninstalling the module, you can change the default uninstall() method of Module class and override it in our module's main class.
+To perform your actions while uninstalling the module, you can change the default `uninstall()` method of Module class and override it in our module's main class.
 
-To override the uninstall() method below is the minimum code required -
+To override the `uninstall()` method below is the minimum code required -
 ```php
 public function uninstall()
 {
@@ -251,13 +249,4 @@ You have to put this file in the root folder of the module. Modules's logo bring
 
 **In the PREFIX_module table, A row is added for the module while module installation. This table contains installed modules information.**
 
-This is how you can create a basic module. Try to develop a basic module and intall it on QloApps.
-
-<style>
-	th {
-	  font-size: 16px;}
-	td {
-	  font-size: 14px;}
-	  td > code {
-	  font-size: 15px!important;}
-</style>
+This is how you can create a basic module. Try to develop a basic module and install it on QloApps.
