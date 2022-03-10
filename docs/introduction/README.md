@@ -14,8 +14,7 @@ All these concepts will be discussed further in this documentation in detail.
 
 Demo
 --------
-FrontEnd : [http://demo.qloapps.com](http://demo.qloapps.com) </br>
-Backend : [http://demo.qloapps.com/adminhtl/index.php](http://demo.qloapps.com/adminhtl/index.php) </br>
+Link : [http://demo.qloapps.com](http://demo.qloapps.com) </br>
 Username : demo@demo.com </br>
 Password : demodemo </br>
 
