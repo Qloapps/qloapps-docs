@@ -14,7 +14,7 @@ All these concepts will be discussed further in this documentation in detail.
 
 Demo
 --------
-Link : [http://demo.qloapps.com](http://demo.qloapps.com) </br>
+Link : [https://demo.qloapps.com](https://demo.qloapps.com) </br>
 Username : demo@demo.com </br>
 Password : demodemo </br>
 
