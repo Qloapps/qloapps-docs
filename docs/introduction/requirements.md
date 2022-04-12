@@ -115,9 +115,15 @@ To install QloApps, you will need the following server configurations for hosted
 
 ### PHP Extensions Required
 
+- PDO_MySQL
 - cURL
-- SimpleXML
+- OpenSSL
 - SOAP
+- GD
+- SimpleXML
+- DOM
+- Zip 
+- Phar
 
 ### Other PHP Configurations
 
@@ -340,9 +346,15 @@ To install QloApps, you will need the following server configurations for hosted
 
 ### PHP Extensions Required
 
+- PDO_MySQL
 - cURL
-- SimpleXML
+- OpenSSL
 - SOAP
+- GD
+- SimpleXML
+- DOM
+- Zip 
+- Phar
 
 
 ### Other PHP Configurations
