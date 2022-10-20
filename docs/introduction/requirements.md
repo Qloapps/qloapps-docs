@@ -5,13 +5,13 @@ To install QloApps, you will need the following server configurations for hosted
 ## Hosted Server Configurations
 
 
-### Web server 
+### Web server
 - Apache 1.3, 2.x
 - Nginx
 - Microsoft IIS
 - Webserver timeout *300*
 
-### PHP version 
+### PHP version
 <table>
   <thead>
     <tr>
@@ -122,7 +122,7 @@ To install QloApps, you will need the following server configurations for hosted
 - GD
 - SimpleXML
 - DOM
-- Zip 
+- Zip
 - Phar
 
 ### Other PHP Configurations
@@ -201,7 +201,7 @@ To install QloApps, you will need the following server configurations for hosted
 </tbody>
 </table>
 
-*** Note *** 
+*** Note ***
 - SSH or FTP access (ask your hosting service for your credentials)
 - SSL certificate if you plan to process payments internally (not using PayPal for instance)
 
@@ -212,25 +212,25 @@ To install QloApps, you will need the following server configurations for hosted
 ### Supported operating system
 
 - Windows
-- Mac<
+- Mac
 - Linux
 
 
 ### Prepared package
 
-- Wamp Server (for Windows)<
+- Wamp Server (for Windows)
 - Xampp (for Windows and Mac)
 - EasyPHP (for Windows)
 
 
 ### Web server
 
-- Apache 1.3, 2.x 
-- Nginx<
+- Apache 1.3, 2.x
+- Nginx
 - Microsoft IIS
 
 
-### PHP version 
+### PHP version
 <table>
   <thead>
     <tr>
@@ -353,7 +353,7 @@ To install QloApps, you will need the following server configurations for hosted
 - GD
 - SimpleXML
 - DOM
-- Zip 
+- Zip
 - Phar
 
 
