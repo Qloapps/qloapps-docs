@@ -124,6 +124,8 @@ To install QloApps, you will need the following server configurations for hosted
 - DOM
 - Zip
 - Phar
+- Mcrypt
+
 
 ### Other PHP Configurations
 
@@ -355,6 +357,7 @@ To install QloApps, you will need the following server configurations for hosted
 - DOM
 - Zip
 - Phar
+- Mcrypt
 
 
 ### Other PHP Configurations
