@@ -32,7 +32,7 @@ Again we are using the Github PR system to take the bug fixings.
 
 ### Optimization
 
-If you have an idea to make the system more optimized and you can make the system work better then its time to make a pull request at the QloApps Github repository.
+If you have an idea to make the system more optimized and you can make the system work better then its time to make a pull request at the [QloApps Github repository](https://github.com/webkul/hotelcommerce).
 
 The better-written code the better is the software performance.
 
@@ -55,7 +55,7 @@ Every release goes through a process of quality analysis before reaching you. Bu
 
 So we need you to report any bug you find in the system to our QA Team. Our team will check the bug and find the best possible solution to resolve it.
 
-You can report a bug either on our Github repository or on our [Forum](http://forums.qloapps.com/).
+You can report a bug either on our [Github repository](https://github.com/webkul/hotelcommerce) or on our [Forum](http://forums.qloapps.com/).
 
 ### Implementing Testing Tools
 

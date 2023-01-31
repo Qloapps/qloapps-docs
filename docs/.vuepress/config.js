@@ -62,7 +62,7 @@ module.exports = {
                     ['database/', 'Structure'],
                     ['database/schema', 'Schema'],
                     ['database/db-class', 'Database Class'],
-                    ['database/db-query-class', 'Database Query Class'],
+                    ['database/db-query-class', 'Database DbQuery Class'],
                     ['database/object-model-class', 'Object Model Class'],
                 ]
             },
@@ -84,8 +84,8 @@ module.exports = {
                     ['module_development/folder-structure', 'Folder Structure'],
                     ['module_development/classes', 'Module classes'],
                     ['module_development/configuration', 'Adding a Configuration page'],
-                    ['module_development/Frontoffice-controller', 'Display Content in Front Office'],
-                    ['module_development/admin-controller', 'Manage Module through Admin Controler'],
+                    ['module_development/frontoffice-controller', 'Display Content in Front office'],
+                    ['module_development/admin-controller', 'Manage Module through Admin Controller'],
                     ['module_development/module-translations', 'Translations'],
                 ]
             },
@@ -94,16 +94,26 @@ module.exports = {
                 path: '/webservice/',
                 collapsable: true,
                 children: [
-                    ['webservice/enable_webservices', 'Enable Webservice'],
+                    ['webservice/enable-webservice', 'Enable Webservice'],
                     ['webservice/basic-topics', 'Basics | First Steps'],
                     ['webservice/qloapps-webservice-lib', 'QloApps Webservice Library'],
-                    ['webservice/advance-api-uses', 'Advance Api Uses'],
+                    ['webservice/advanced-api-uses', 'Advanced API Uses'],
                 ]
             },
             {
                 title: 'Theme',
                 path: '/theme/',
                 collapsable: true,
+                children: [
+                    ['theme/', 'Introduction'],
+                    ['theme/directory-structure', 'Directory Structure'],
+                    ['theme/creating-a-theme', 'Creating a Theme'],
+                    ['theme/designing-the-theme', 'Designing the Theme'],
+                    ['theme/theme-modules', 'Theme Modules'],
+                    ['theme/exporting-a-theme', 'Exporting a Theme'],
+                    ['theme/installing-a-theme', 'Installing a Theme'],
+                    ['theme/best-practices', 'Best Practices'],
+                ]
             },
             {
                 title: 'Testing',
@@ -111,8 +121,8 @@ module.exports = {
                 collapsable: true,
             },
             {
-                title: 'Updation & Migration',
-                path: '/updation_migration/',
+                title: 'Upgrade',
+                path: '/upgrade/',
                 collapsable: true,
             },
             {

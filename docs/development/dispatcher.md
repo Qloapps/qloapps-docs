@@ -1,6 +1,6 @@
 # Dispatcher
 
-The Dispatcher in QloApps manages redirection of URLs i.e. QloApps uses one file index.php only instead of using multiple files like cart.php, order.php, or product.php in the root folder.
+The Dispatcher in QloApps manages redirection of URLs i.e. QloApps uses one file `index.php` only instead of using multiple files like `cart.php`, `order.php`, or `product.php` in the root folder.
 
 The dispatcher handles all the requests in QloApps. It is responsible for loading and executing the controller. 
 
@@ -23,14 +23,14 @@ http://qloapps.example.com/fr/2-kings-hotels.html
 :::
 
 
-In QloApps there are many advantages of using dispatcher -
+In QloApps there are many advantages of using dispatcher:
 
 - To add a controller is easier.
 - For better SEO, you can change your friendly URLs by using custom routes.
 - There is only one single entry point into the software, which improves software's reliability and makes future developments easier.
 
 
-Using Dispatcher loadRoutes() method (by overriding) new routes can be easily created.
+Using Dispatcher `loadRoutes()` method (by overriding) new routes can be easily created.
 
 
 Three abstract classes: Controller, FrontController and AdminController are used by the dispatcher. (FrontController and AdminController inheriting from the Controller).

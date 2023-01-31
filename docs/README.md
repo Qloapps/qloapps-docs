@@ -1,7 +1,7 @@
 ---
 home: true
 heroText: QloApps Development Documentation
-tagline: This document will help you to develop on QloApps to tailor the system as per your vision
+tagline: This documentation will help you develop on QloApps to tailor the system as per your vision
 actionText: Get Started →
 actionLink: /introduction/
 features:

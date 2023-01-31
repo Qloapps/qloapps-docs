@@ -11,20 +11,20 @@ Let's learn how to set up a webservice library to use it.
 #### Prerequisites
 
 - QloApps >= 1.5.0 is installed on a server.
-- mod_rewrite  is enabled.
-- curl extension is enabled in PHP
+- `mod_rewrite`  is enabled.
+- `curl` extension is enabled in PHP
 
 
 #### Web service library
 
 **PSWebServiceLibrary.php** file can be found in the repository:
 
-https://github.com/PrestaShop/PrestaShop-webservice-lib/blob/master/PSWebServiceLibrary.php
+[https://github.com/PrestaShop/PrestaShop-webservice-lib/blob/master/PSWebServiceLibrary.php](https://github.com/PrestaShop/PrestaShop-webservice-lib/blob/master/PSWebServiceLibrary.php)
 
 Follow the below steps to download the file :
 
 - Create an empty PHP file as PSWebServiceLibrary.php
-- Click https://raw.github.com/PrestaShop/PrestaShop-webservice-lib/master/PSWebServiceLibrary.php and Copy and paste the code in PSWebServiceLibrary.php
+- Go to [https://raw.github.com/PrestaShop/PrestaShop-webservice-lib/master/PSWebServiceLibrary.php](https://raw.github.com/PrestaShop/PrestaShop-webservice-lib/master/PSWebServiceLibrary.php) and copy-paste the code in PSWebServiceLibrary.php
 - You have to load the PSWebServiceLibrary in your PHP script or application where you need it.
 
 ```php
@@ -42,9 +42,9 @@ $objWebService = new PrestaShopWebservice(....);
 To create your client, create an object of PrestaShopWebservice.
 
 PrestaShopWebservice constructor takes 3 parameters -
-- Root path of the website. ex- http://example.com/
-- Authentication key. ex- MNBDHALDK122DA879ADAD12ASKSK12W3
-- Boolean value for debug mode. true if Webservice uses debug mode else false.
+- Root path of the website. For example, http://example.com/
+- Authentication key. For example, MNBDHALDK122DA879ADAD12ASKSK12W3
+- Boolean value for debug mode, `true` if Webservice uses debug mode else `false`.
 
 ```php
 $objWebService = new PrestaShopWebservice('http://example.com/', 'MNBDHALDK122DA879ADAD12ASKSK12W3', false);
@@ -63,11 +63,11 @@ After creating the object you can use below methods for your operations :
 
 By error handling, it is easy to detect issues and you will be able to correct them easily. Webservice library Error handling is done by using PHP exceptions.
 
-You have to use **try.. catch** block for handing the exception thrown by the webservice library.
+You have to use **try-catch** block for handing the exception thrown by the webservice library.
 
 **PrestaShopWebserviceException** is used in the QloApps webservice library so that you can catch this exception only to deal with errors of webservice.
 
-Belw is an example you to handle exception with try and catch blocks :
+Below is an example you to handle exception with try and catch blocks :
 
 ```php
 try {
@@ -96,7 +96,7 @@ To read a resource from the QloApps webservice library :
 
 ### List of resource IDs
 
-Let’s get a list of customer IDs in our example:**
+Let’s get a list of customer IDs in our example:
 
 ```php
 try {
@@ -153,14 +153,14 @@ So this is how you get the list of available IDs of the resource and how to proc
 
 ### Retrieve data of resource ID
 
-**Now what if you want to get all the data of any specific id of the resource ?**
+**Now what if you want to get all the data of any specific id of the resource?**
 
 Let's learn to get the data of an ID of the resource. Again understand it by the example of customer resources.
 
-we send the below parameters To get the data :
+We send the below parameters to get the data :
 
-- **'resource'**: Name of the resource (customers)
-- **'id'**	unique id(int of the resource.
+- **resource**: Name of the resource (customers)
+- **id**: Unique ID (int) of the resource.
 
 ```php
 try {
@@ -300,16 +300,16 @@ $customerFields->passwd = 'passkey@12#';
 
 After fill all the fields send parameters in the add() method.
 
-we send below parameters in the add method :
+We send below parameters in the add method :
 
-- **'resource'**: Name of the resource
-- **'postXml'** : XML content (string) created as $xml->asXML()
+- **resource**: Name of the resource
+- **postXml** : XML content (string) created as $xml->asXML()
 
 
 ```php
 $createdXml = $webService->add([
-   'resource' => 'customers',
-   'postXml' => $blankSchemaXml->asXML(),
+    'resource' => 'customers',
+    'postXml' => $blankSchemaXml->asXML(),
 ]);
 $newCustomerFields = $createdXml->customer->children();
 echo 'Customer created with ID ' . $newCustomerFields->id . PHP_EOL;
@@ -319,9 +319,9 @@ echo 'Customer created with ID ' . $newCustomerFields->id . PHP_EOL;
 
 ---
 
-**NOTE** : Every resource has validation rules i.e. required fields, field types and formats etc..) of its own. You have to follow these conditions while filling data in the schema otherwise the webservice will not add the resource.
+**NOTE** : Every resource has validation rules i.e. required fields, field types and formats etc.) of its own. You have to follow these conditions while filling data in the schema otherwise the webservice will not add the resource.
 
-Use synopsis schema to know the validation rules of a resource. ex. http://example.com/api/customers?schema=synopsis
+Use synopsis schema to know the validation rules of a resource. For example, http://example.com/api/customers?schema=synopsis
 
 ---
 
@@ -353,7 +353,7 @@ try {
 
 ### Step 2 : Fill the schema
 
-As we have got the XML from the above code, Now we have to update only the fields which we want to update for the resource ( other fields are already present in the XML ).
+As we have got the XML from the above code, now we have to update only the fields which we want to update for the resource (other fields are already present in the XML).
 
 ```php
 $customerFields = $xml->customer->children();
@@ -366,11 +366,11 @@ $customerFields->lastname = 'DOE';
 
 After updating the fields send parameters in the edit() method.
 
-we send below parameters in the edit method :
+We send below parameters in the edit method :
 
-- **'resource'**: Name of the resource
-- **'id'** : Id of the resource to be updated
-- **'putXml'** : XML content (string) created as $xml->asXML()
+- **resource**: Name of the resource
+- **id** : Id of the resource to be updated
+- **putXml** : XML content (string) created as $xml->asXML()
 
 ```php
 $updatedXml = $webService->edit([

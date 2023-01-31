@@ -2,9 +2,9 @@
 
 Classes are used to manage Db connections, Object–relational mapping (ObjectModel), utility function that are used within a module.
 
-During module installation we called `createModuleTables()` in module main class to create tables that will be used in module, nut instaed of creating function to create, delete table in main module class we will create a class which will handle all database queries.
+During module installation we called `createModuleTables()` in module main class to create tables that will be used in module, but instaed of creating function to create, delete table in main module class we will create a class which will handle all database queries.
 
-Let's create `MyModuleDb.php` and place it in `/classes` folder in module. Include this class in module main file before class decleration.
+Let's create `MyModuleDb.php` and place it in `/classes` folder in module. Include this class in module main file before class declaration.
 ```php
 <?php
 if (!defined('_PS_VERSION_')) {
@@ -21,7 +21,7 @@ class MyQloModule extends Module
 
 Now lets define our `MyModuleDb.php` class
 
-``` php
+```php
 class MyModuleDb
 {
     public function createModuleTables()
@@ -61,29 +61,30 @@ class MyModuleDb
             `'._DB_PREFIX_.'my_product_list`,'
         );
     }
-
 }
 ```
-In the above code, we have created a function `createModuleTables()` which gets the queries need to be executed from `getModuleSql()` function and uses [Database function](../database/db-class) to create table in QloApps database.
+In the above code, we have created a function `createModuleTables()` which gets the queries needed to be executed from `getModuleSql()` function and uses [Database function](../database/db-class) to create table in QloApps database.
 
-All thats left is to call this function during our module installation.
+All that's left is to call this function during our module installation.
 ```php
 public function install()
 {
     $objMyModuleDb = new MyModuleDb();
-    if (!parent::install() 
-        || !$this->registerHook('actionFrontControllerSetMedia') 
-        || !$this->registerHook('displayLeftColumn') 
-        || !Configuration::updateValue('MYQLOMODULE_NAME', 'Module name in configuration table') 
+    if (!parent::install()
+        || !$this->registerHook('actionFrontControllerSetMedia')
+        || !$this->registerHook('displayLeftColumn')
+        || !Configuration::updateValue('MYQLOMODULE_NAME', 'Module name in configuration table')
         || !$objMyModuleDb->createModuleTables()  // MyModuleDb class create table function called from module installation.
     ) {
         return false;
     }
+
     return true;
 }
 ```
 
-After we have created tables for our module, we will need to be able to add, remove or access data saved in tables. To manage this you will need to create a ObjectModel class (object-relational model) for each tables.<br>
-Create a new objectModel class `MyProductList` in module's classes folder. This class will also contain any function that will be used to access data from its table.<br>
-For creating Object Model class Follow [The ObjectModel class](../database/object-model-class) guide.
+After we have created tables for our module, we will need to be able to add, remove or access data saved in tables. To manage this you will need to create a ObjectModel class (object-relational model) for each tables.
 
+Create a new ObjectModel class `MyProductList` in module's classes folder. This class will also contain any function that will be used to access data from its table.
+
+For creating ObjectModel class follow [The ObjectModel class](../database/object-model-class) guide.

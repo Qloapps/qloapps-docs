@@ -1,10 +1,9 @@
 # QloApps Installation
 
 
-### Download Qloapps Software
+### Download QloApps Software
 
-Downloading QloApps is very simple. Just visit our [QloApps Official Website](https://qloapps.com/) and
-click on Download Button
+Downloading QloApps is very simple. Just visit our [QloApps Official Website](https://qloapps.com/) and click on Download button to download the latest release version.
 
 ### QloApps Installation through GUI
 

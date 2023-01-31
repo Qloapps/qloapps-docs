@@ -15,15 +15,11 @@ Right when a table develops an association  between two elements, the names of t
 
 A few nuances to note about tables:
 
-- Tables that contain translations must end with the _lang postfix. For example, `PREFIX_product_lang` has all the translations for the `PREFIX_product` table.
-
-- Tables that contain the records interfacing with a specific shop must end with the _shop addition. For instance, `PREFIX_category_shop` contains the circumstance of each class depending upon the website.
+- Tables that contain translations must end with the `_lang` postfix. For example, `PREFIX_product_lang` has all the translations for the `PREFIX_product` table.
 
 There is furthermore a few standard practices for data sections inside a table:
 
-- Use the id_lang field to website the language related with a record.
-
-- Use the id_shop field to website the website related with a record.
+- Use the `id_lang` field to specify the language related with a record.
 
 ## Database content
 
@@ -44,8 +40,7 @@ Its name is the QloApps variant on which the change will be applied.
 ## Applying changes
 
 Applying the changes to your database can be done:
-- By reinstalling the shop
+- By reinstalling the website
 - From a previous version of QloApps, by copying the new files and calling the PHP script `install/upgrade/upgrade.php`
 
 QloApps lists the upgrade files waiting to be applied, by selecting the names fitting between the configuration property ` PS_VERSION_DB` and the constant `_PS_INSTALL_VERSION_` defined in `install/install_version.php`.
-
