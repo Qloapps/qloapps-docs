@@ -2,7 +2,7 @@
 
 With changing industry scenarios and community needs, QloApps keeps evolving and new versions are launched periodically. It is therefore important to keep upgrading for better security, stability, performance and new features.
 
-You can upgrade your current installation of QloApps to the [latest available](https://github.com/webkul/hotelcommerce/releases) using our freely available upgrade module **QloApps 1-Click Auto Upgrade**.
+You can upgrade your current installation of QloApps to the [latest available](https://github.com/webkul/hotelcommerce/releases) using our freely available upgrade module **[QloApps 1-Click Auto Upgrade](https://store.webkul.com/qloapps-1-click-upgrade.html)**.
 
 The complete documentation of this module is available at [https://qloapps.com/qloapps-1-click-auto-upgrade](https://qloapps.com/qloapps-1-click-auto-upgrade/).
 

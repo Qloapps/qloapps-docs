@@ -19,7 +19,7 @@ A theme is the interface through which an end user interacts with websites throu
 Here are a few important points about a theme:
 - All themes are located in `/themes` folder.
 - Each theme is located in a subfolder of its own inside the folder above.
-- For example, the default QloApps theme is located in `/themes/hotel-reservation-system` folder.
+- For example, the default QloApps theme is located in `/themes/hotel-reservation-theme` folder.
 - Each theme has its own set of following files:
     - Template files (`.tpl`)
     - Image files (`.gif`, `.jpg`, `.png` etc.)
