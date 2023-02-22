@@ -9,7 +9,7 @@ To install QloApps, you will need the following server configurations for hosted
 - Apache 1.3, 2.x
 - Nginx
 - Microsoft IIS
-- Webserver timeout *300*
+- Webserver timeout, `max_execution_time`, set to a minimum of *300*
 
 ### PHP version
 <table>
@@ -36,7 +36,7 @@ To install QloApps, you will need the following server configurations for hosted
   </thead>
 <tbody>
   <tr>
-    <td>1.4.0.</td>
+    <td>1.4.0</td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
@@ -130,10 +130,10 @@ To install QloApps, you will need the following server configurations for hosted
 ### Other PHP Configurations
 
 
-- set memory_limit to “128M”
-- set upload_max_filesize to “16M"
-- set max_execution_time to “500”
-- set allow_url_fopen "on"
+- Set `memory_limit` to **128M**
+- Set `upload_max_filesize` to **16M**
+- Set `max_execution_time` to **500**
+- Set `allow_url_fopen` to **on**
 
 
 ### Supported MySQL version
@@ -156,7 +156,7 @@ To install QloApps, you will need the following server configurations for hosted
   </thead>
 <tbody>
   <tr>
-    <td>1.4.0.</td>
+    <td>1.4.0</td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
@@ -203,15 +203,15 @@ To install QloApps, you will need the following server configurations for hosted
 </tbody>
 </table>
 
-*** Note ***
-- SSH or FTP access (ask your hosting service for your credentials)
+**Note**
+- SSH or FTP access (ask your hosting service provider for your credentials)
 - SSL certificate if you plan to process payments internally (not using PayPal for instance)
 
 
 ## Local Server Configurations
 
 
-### Supported operating system
+### Supported operating systems
 
 - Windows
 - Mac
@@ -220,8 +220,8 @@ To install QloApps, you will need the following server configurations for hosted
 
 ### Prepared package
 
-- Wamp Server (for Windows)
-- Xampp (for Windows and Mac)
+- WampServer (for Windows)
+- XAMPP (for Windows and Mac)
 - EasyPHP (for Windows)
 
 
@@ -257,7 +257,7 @@ To install QloApps, you will need the following server configurations for hosted
   </thead>
 <tbody>
   <tr>
-    <td>1.4.0.</td>
+    <td>1.4.0</td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
@@ -363,10 +363,10 @@ To install QloApps, you will need the following server configurations for hosted
 ### Other PHP Configurations
 
 
-- set memory_limit to “128M”
-- set upload_max_filesize to “16M"
-- set max_execution_time to “500”
-- set allow_url_fopen "on"
+- Set `memory_limit` to **128M**
+- Set `upload_max_filesize` to **16M**
+- Set `max_execution_time` to **500**
+- Set `allow_url_fopen` to **on**
 
 
 ### Supported MySQL version
@@ -389,7 +389,7 @@ To install QloApps, you will need the following server configurations for hosted
   </thead>
 <tbody>
   <tr>
-    <td>1.4.0.</td>
+    <td>1.4.0</td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>

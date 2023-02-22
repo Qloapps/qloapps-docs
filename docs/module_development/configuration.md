@@ -1,10 +1,10 @@
-# How to add a configuration page
+# How to Add a Configuration Page
 
-You need to allow the users to configure the module. And for that, your module should have the configure link at the back office under the Module and Services tab, in the module list. 
+You need to allow the users to configure the module. And for that, your module should have the configure link at the back office under the Module and Services tab, in the module list.
 
-The "Configure" link appears when you add the `getContent()` method to your main class. This is the standard QloApps method, its purpose is to inform the back office that the module consists of a configuration page and it has to display the configuration link.  
+The **Configure** link appears when you add the `getContent()` method to your main class. This is the standard QloApps method, its purpose is to inform the back office that the module consists of a configuration page and it has to display the configuration link.
 
-But the `getContent()` public method in the module object only links appear, not create a configuration page. You will need to create a configuration page, and we will explain how. 
+But the `getContent()` public method in the module object only links appear, not create a configuration page. You will need to create a configuration page, and we will explain how.
 
 <!-- One this page we will be able to change the content of the module variable that is stored in the prefix_configuration data table.  -->
 
@@ -15,26 +15,23 @@ First, here is the complete code for the `getContent()` method:
 ```php
 public function getContent()
 {
-    $html = null;
- 
-    if (Tools::isSubmit('submit'.$this->name))
-    {
-        $my_var = strval(Tools::getValue('MY_VAR_NAME'));
-        if (!$my_var
-          || empty($my_var)
-          || !Validate::isGenericName($my_var))
-            $html .= $this->displayError($this->l('Invalid Configuration value'));
-        else
-        {
-            Configuration::updateValue('MY_VAR_NAME', $my_var);
-            $html .= $this->displayConfirmation($this->l('Settings updated'));
+    $html = '';
+    if (Tools::isSubmit('submit'.$this->name)) {
+        $myConfigurationValue = strval(Tools::getValue('MY_CONFIGURATION_NAME'));
+
+        if (!$myConfigurationValue || !Validate::isGenericName($myConfigurationValue)) {
+            $html .= $this->displayError($this->l('Invalid configuration value.'));
+        } else {
+            Configuration::updateValue('MY_CONFIGURATION_NAME', $myConfigurationValue);
+            $html .= $this->displayConfirmation($this->l('Settings updated.'));
         }
     }
+
     return $html.$this->displayForm();
 }
 ```
 
-When the configuration page is loaded the `getContent()` method is called first. And that is why it is used to first update any value that is submitted by any form that exists on the configuration page. 
+When configuration page is loaded the `getContent()` method is called first. And that is why it is used to first update any value that is submitted by any form that exists on the configuration page.
 
 Here is a line by line explanation:
 
@@ -61,10 +58,10 @@ The configuration form itself is displayed with the `displayForm()` method. Here
 public function displayForm()
 {
     // Get default language
-    $default_lang = (int)Configuration::get('PS_LANG_DEFAULT');
-     
+    $defaultLang = (int) Configuration::get('PS_LANG_DEFAULT');
+
     // Init Fields form array
-    $fields_form[0]['form'] = array(
+    $fieldsForm[0]['form'] = array(
         'legend' => array(
             'title' => $this->l('Settings'),
         ),
@@ -82,50 +79,49 @@ public function displayForm()
             'class' => 'btn btn-default pull-right'
         )
     );
-     
+
     $helper = new HelperForm();
-     
+
     // Module, token and currentIndex
     $helper->module = $this;
     $helper->name_controller = $this->name;
     $helper->token = Tools::getAdminTokenLite('AdminModules');
     $helper->currentIndex = AdminController::$currentIndex.'&configure='.$this->name;
-     
+
     // Language
-    $helper->default_form_language = $default_lang;
-    $helper->allow_employee_form_lang = $default_lang;
-     
+    $helper->default_form_language = $defaultLang;
+    $helper->allow_employee_form_lang = $defaultLang;
+
     // Title and toolbar
     $helper->title = $this->displayName;
     $helper->show_toolbar = true;        // false -> remove toolbar
     $helper->toolbar_scroll = true;      // yes - > Toolbar is always visible on the top of the screen.
     $helper->submit_action = 'submit'.$this->name;
     $helper->toolbar_btn = array(
-        'save' =>
-        array(
+        'save' => array(
             'desc' => $this->l('Save'),
             'href' => AdminController::$currentIndex.'&configure='.$this->name.'&save'.$this->name.
             '&token='.Tools::getAdminTokenLite('AdminModules'),
         ),
         'back' => array(
             'href' => AdminController::$currentIndex.'&token='.Tools::getAdminTokenLite('AdminModules'),
-            'desc' => $this->l('Back to list')
+            'desc' => $this->l('Back to list'),
         )
     );
-     
+
     // Load current value
     $helper->fields_value['VARIABLE_NAME'] = Configuration::get('VARIABLE_NAME');
-     
-    return $helper->generateForm($fields_form);
+
+    return $helper->generateForm($fieldsForm);
 }
 ```
-This block of code helps in making the build forms easily while using some QloApps methods. 
+This block of code helps in making the build forms easily while using some QloApps methods.
 
 Here is the line wise explanation:
 
 1. With the `Configuration::get()` method, we retrieve the value of the currently chosen language ("PREFIX_LANG_DEFAULT"). For security reasons, we cast the variable into an integer using (int).
 1. While preparing to generate the form, we must build an array of the various titles, textfields and other form specifics.
-    At the end, we create the $fields_form variable, which will contain a multidimensional array. Each of the arrays it features has the detailed description of the tags the form must contain. From this variable, QloApps will render the HTML form as it is described.
+    At the end, we create the $fieldsForm variable, which will contain a multidimensional array. Each of the arrays it features has the detailed description of the tags the form must contain. From this variable, QloApps will render the HTML form as it is described.
     For instance:
 
     ```php
@@ -148,7 +144,7 @@ Here is the line wise explanation:
     <div class="clear"></div>
     ```
 1. We then create an instance of the HelperForm class which is explained further in this document.
-1. Once the HelperForm settings are done, we generate the form based on the content of the $fields_form variable.
+1. Once the HelperForm settings are done, we generate the form based on the content of the $fieldsForm variable.
 
 
 ## Using HelperForm
@@ -159,25 +155,24 @@ Here is our sample code, as a reminder:
 
 ```php
 $helper = new HelperForm();
- 
+
 // Module, Token and currentIndex
 $helper->module = $this;
 $helper->name_controller = $this->name;
 $helper->token = Tools::getAdminTokenLite('AdminModules');
 $helper->currentIndex = AdminController::$currentIndex.'&configure='.$this->name;
- 
+
 // Language
-$helper->default_form_language = $default_lang;
-$helper->allow_employee_form_lang = $default_lang;
- 
+$helper->default_form_language = $defaultLang;
+$helper->allow_employee_form_lang = $defaultLang;
+
 // title and Toolbar
 $helper->title = $this->displayName;
 $helper->show_toolbar = true;        // false -> remove toolbar
 $helper->toolbar_scroll = true;      // yes - > Toolbar is always visible on the top of the screen.
 $helper->submit_action = 'submit'.$this->name;
 $helper->toolbar_btn = array(
-    'save' =>
-    array(
+    'save' => array(
         'desc' => $this->l('Save'),
         'href' => AdminController::$currentIndex.'&configure='.$this->name.'&save'.$this->name.
         '&token='.Tools::getAdminTokenLite('AdminModules'),
@@ -187,14 +182,14 @@ $helper->toolbar_btn = array(
         'desc' => $this->l('Back to list')
    )
 );
- 
+
 // Load current value
 $helper->fields_value['VARIABLE_NAME'] = Configuration::get('VARIABLE_NAME');
- 
-return $helper->generateForm($fields_form);
+
+return $helper->generateForm($fieldsForm);
 ```
 
-Our example uses several of HelperForm's attributes: they need to be set before we generate the form itself from the `$fields_form` variable:
+Our example uses several of HelperForm's attributes: they need to be set before we generate the form itself from the `$fieldsForm` variable:
 
 - `$helper->module`: requires the instance of the module that will use the form.
 - `$helper->name_controller`: requires the name of the module.
@@ -219,30 +214,23 @@ Change the value to whichever you like, click on the "Save" button, then go relo
 
 After admin submits the form, the request is send to the same URL along with `submitCONTROLLERNAME` parameter in POST data where *CONTROLLERNAME* is `$helper->name_controller` assigned in helper form.
 
-To save form data, we will check form submit in `getContent()` and save data. 
+To save form data, we will check form submit in `getContent()` and save data.
 
-``` php
+```php
 public function getContent()
 {
-    $html = null;
- 
-    if (Tools::isSubmit('submit'.$this->name))
-    {
+    $html = '';
+    if (Tools::isSubmit('submit'.$this->name)) {
         // Process data save here
-        $my_var = strval(Tools::getValue('MY_VAR_NAME'));
-        if (!$my_var
-          || empty($my_var)
-          || !Validate::isGenericName($my_var))
+        $myVarName = strval(Tools::getValue('MY_VAR_NAME'));
+        if (!$myVarName || !Validate::isGenericName($myVarName)) {
             $html .= $this->displayError($this->l('Invalid Configuration value'));
-        else
-        {
-            Configuration::updateValue('MY_VAR_NAME', $my_var);
+        } else {
+            Configuration::updateValue('MY_VAR_NAME', $myVarName);
             $html .= $this->displayConfirmation($this->l('Settings updated'));
         }
     }
+
     return $html.$this->displayForm();
 }
 ```
-
-we have explained the complete process of saving data in [The getContent() method](#the-getcontent-method) 
-

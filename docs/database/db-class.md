@@ -1,5 +1,5 @@
 # Accessing Database with Db Class
-Linking to the database
+Linking to the database:
 
 ```php
 /**
@@ -33,7 +33,7 @@ $customer = $db->getRow($request);
 ```
 This method deals with raw SQL requests so the `_DB_PREFIX_` must be used.
 
-Returns an affiliated array containing the first row matching the resultant query. This function directly includes "LIMIT 1" to the query.
+Returns an affiliated array containing the first row matching the resultant query. This function directly includes `LIMIT 1` to the query.
 
 ### Execute a SELECT request with only a single value
 
@@ -50,21 +50,24 @@ This technique is helpful when you need just one value to recover from the datab
 ### Execute a raw SQL request (UPDATE, INSERT…)
 
 ```php
-$request = "INSERT INTO `' . _DB_PREFIX_ . 'some_table` (`id_table`) VALUES (10)";
+$request = 'INSERT INTO `' . _DB_PREFIX_ . 'some_table` (`id_table`) VALUES (10)';
 
 /** @var bool */
 $db->execute($request);
 ```
-This will return a boolean whether a query is executed successfully or not. This function should not be used for select queries. 
+This will return a boolean whether a query is executed successfully or not. This function should not be used for select queries.
 
 ### Insert a row in the database
 ```php
 /** @var bool $result */
-$result = $db->insert('db_table', array(
-    'id_lang' => (int) $lang,
-    'value' => pSQL($value),
-    'date_upd' => date('Y-m-d H:i:s'),
-));
+$result = $db->insert(
+    'db_table',
+    array(
+        'id_lang' => (int) $lang,
+        'value' => pSQL($value),
+        'date_upd' => date('Y-m-d H:i:s'),
+    )
+);
 ```
 `_DB_PREFIX_` will be added to the table name as a prefix automatically.
 
@@ -74,10 +77,16 @@ This will return a boolean saying if the request was appropriately executed or n
 
 ```php
 /** @var bool $result */
-$result = $db->update('db_table', array(
-    'value' => pSQL($value),
-    'date_upd' => date('Y-m-d H:i:s'),
-), 'id_table = 10', 1, true);
+$result = $db->update(
+    'db_table',
+    array(
+        'value' => pSQL($value),
+        'date_upd' => date('Y-m-d H:i:s'),
+    ),
+    'id_table = 10',
+    1,
+    true
+);
 ```
 `_DB_PREFIX_` will be added to the table name as a prefix automatically.
 

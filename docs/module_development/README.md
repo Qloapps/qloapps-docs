@@ -15,7 +15,7 @@ Modules are small programs that use the functionalities of QloApps to add/modify
 Below are some technical aspects of modules.
 
 - A module always has the main PHP file and can contain many other needed PHP files.
-- It consists of template(.tpl) files and also assets i.e. CSS, JS, images, etc to display the content to the admin (on back-office) Or Customers (on the front office).
+- It consists of template(.tpl) files and also assets i.e. CSS, JS, images, etc to display the content to the admin (on back office) Or Customers (on the front office).
 - A module can interact with as many hooks to perform actions. Through hooks, you can attach your code while code parsing.
 
 *Hooks enable you to perform any actions(execute your code) on different events Or display some content at different places.*

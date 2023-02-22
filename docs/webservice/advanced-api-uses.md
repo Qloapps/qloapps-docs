@@ -1,13 +1,13 @@
-# Advance API Uses
+# Advanced API Uses
 
 In this section, we will explore some advanced topics of QloApps Webservice APIs.
 
-Read all the subtopics under this section to understand the advance uses of web services in detail.
+Read all the subtopics under this section to understand the advanced uses of web services in detail.
 
 
-## GET Advance Parameters
+## GET Advanced Parameters
 
-There are some advance GET parameters to your request.So that you can modify the READ response.
+There are some advanced GET parameters to your request. So that you can modify the READ response.
 
 ### "display" parameter
 
@@ -97,7 +97,7 @@ You can change the result by using the language parameter.
 ## Configuration Management
 
 You can also manage the Global Configurations of the QloApps website through API.
-Here we will understand the whole process (create/update) with the example of global configuration **PS_LANG_DEFAULT** which contains the default language of the website in the back-office.
+Here we will understand the whole process (create/update) with the example of global configuration **PS_LANG_DEFAULT** which contains the default language of the website in the back office.
 
 ---
 - Global configurations are stored in the **_PREFIX_configuration** table in QloApps.
@@ -106,7 +106,7 @@ Here we will understand the whole process (create/update) with the example of gl
 ---
 
 
-#### Check the configuration existance
+#### Check the configuration existence
 
 Check if configuration exists or not by using filters and display parameters
 

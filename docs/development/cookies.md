@@ -4,13 +4,13 @@ To save all the session information QloApps uses encrypted cookies. Cookies are 
 
 `Cookie` class is used for all the read and write operations.
 
-Within QloApps code you can access cookies through cookie object in context object-
+Within QloApps code you can access cookies through cookie object in context object:
 
 ```php
 $this->context->cookie;
 ```
 
-- To get all the data of the cookie you can get it by cookie's name using the below code -
+- To get all the data of the cookie you can get it by cookie's name using the below code:
 
 ```php
 $this->context->cookie->variable;
@@ -24,7 +24,7 @@ include_once('QloApps_path/config/config.inc.php');
 include_once('QloApps_path/config/settings.inc.php');
 include_once('QloApps_path/classes/Cookie.php');
 
-$cookie = new Cookie('ps'); 
+$cookie = new Cookie('ps');
 
 // For employee's cookie Use "psAdmin".
 $cookie = new Cookie('psAdmin');

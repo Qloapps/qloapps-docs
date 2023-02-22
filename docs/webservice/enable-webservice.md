@@ -2,7 +2,7 @@
 
 To enable webservices in the QloApps you have to follow the below steps -
 
-- In QloApps back office, open the tab "Webservice" under the "Advanced Parameters" menu. Then Enable the field "Enable Qloapps's webservice" under the "CONFIGURATION" panel.
+- In QloApps back office, open the tab "Webservice" under the "Advanced Parameters" menu. Then Enable the field "Enable QloApps's webservice" under the "CONFIGURATION" panel.
 
 ![enable_webservice](..//assets/images/api/enable_webservice.png)
 
@@ -15,8 +15,8 @@ To enable webservices in the QloApps you have to follow the below steps -
   - **Status** : Through this option, you can disable this key any time. So you can provide accesses temporarily.
 
   - **Permissions** : This section enables you to assign accesses for each resource, you want to provide for this webservice key.
-  You might give read, write and delete accesses of some resources And you only read access of some resources and no accesses of other resources. So this is how you can manage the rights of resources in webservices.
-  Here you can select the resources you need to manipulate from your back-office.
+  You might give read, write and delete accesses of some resources and you only read access of some resources and no accesses of other resources. So this is how you can manage the rights of resources in webservices.
+  Here you can select the resources you need to manipulate from your back office.
 
 **_If you create your custom webservice key, make sure it is very secure and that provided rights are limited_.**
 
@@ -30,7 +30,7 @@ You can also perform things programmatically. Below are some coding details to p
 Configuration::updateValue('PS_WEBSERVICE', 1);
 
 // Disable webservice
-Configuration::updateValue('PS_WEBSERVICE', 1);
+Configuration::updateValue('PS_WEBSERVICE', 0);
 ```
 
 #### Create API keys with WebserviceKey class
@@ -46,8 +46,8 @@ $objWebserviceKey->save();
 ```php
 // Let's give the permissions to address and customer resources
 $permissions = [
-  'addresses' => ['GET' => 1, 'POST' => 1, 'PUT' => 1, 'DELETE' => 0, 'HEAD' => 1],
-  'customers' => ['GET' => 1, 'POST' => 1, 'PUT' => 0, 'DELETE' => 0, 'HEAD' => 1],
+    'addresses' => ['GET' => 1, 'POST' => 1, 'PUT' => 1, 'DELETE' => 0, 'HEAD' => 1],
+    'customers' => ['GET' => 1, 'POST' => 1, 'PUT' => 0, 'DELETE' => 0, 'HEAD' => 1],
 ];
 
 WebserviceKey::setPermissionForAccount($objWebserviceKey->id, $permissions);

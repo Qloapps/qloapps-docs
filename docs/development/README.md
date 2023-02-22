@@ -1,34 +1,29 @@
-# Standards of Coding
+# Coding Standards
 
 We know how much consistency is important, especially if we are writing open-source code. This is because the source code is used by a lot of people and everyone keeps an eye on it. Hence, these people find bugs and take corrective actions to fix them.
 
-Because of these reasons, when you are writing a theme, a plugin, or a key patch, you must follow the listed guidelines when you are writing something for QloApps.They are the ones that the developers of QloApps stick to and when you follow them then there is a guarantee that you can easily integrate your code with QloApps.
+Because of these reasons, when you are writing a theme, a plugin, or a key patch, you must follow the listed guidelines when you are writing something for QloApps. They are the ones that the developers of QloApps stick to and when you follow them then there is a guarantee that you can easily integrate your code with QloApps.
 
 In brief, to keep the code easy to read and maintain it is important to have code consistency.
 
 
 **The standards, conventions, and guidelines for QloApps development are as follows:**
 
-- **PHP code**
- QloApps retain the [PSR-1](https://www.php-fig.org/psr/psr-1/) and [PSR-2](https://www.php-fig.org/psr/psr-2/), along with [some good details from Symfony](https://symfony.com/doc/current/contributing/code/standards.html).
-- **JavaScript code**
- In QloApps we follow the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
-- **HTML and CSS code**
- [coding standards of Mark Otto](https://codeguide.co/) are followed by QloApps. The [Bootstrap framework](https://getbootstrap.com/) is created by Mark.
-- **Twig / Smarty code**
- Same standards as with HTML and CSS.
-- **Commits & Pull-requests conventions**
- We select the best practices to be formalized
+- **PHP code**: QloApps retains the [PSR-1](https://www.php-fig.org/psr/psr-1/) and [PSR-2](https://www.php-fig.org/psr/psr-2/), along with [some good details from Symfony](https://symfony.com/doc/current/contributing/code/standards.html).
+- **JavaScript code**: In QloApps we follow the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript).
+- **HTML and CSS code**: [coding standards of Mark Otto](https://codeguide.co/) are followed by QloApps. The [Bootstrap framework](https://getbootstrap.com/) is created by Mark.
+- **Twig / Smarty code**: Same standards as with HTML and CSS.
+- **Commits & Pull-requests conventions**: We select the best practices to be formalized.
 
-## SQL guidelines
+## SQL Guidelines
 
-For Table
- 1. Table names should begin with the "_DB_PREFIX_" prefix.
- 2. Table names should have the exact ditto name as the object they reflect: "prefix_cart".
- 3. Table names have to be singular: "prefix_order".
- 4. Save the data for languages has in a table that is named exactly the same as the object's table, and with the "_lang" suffix: "prefix_product_lang".
+For table names:
+ 1. Table names should begin with the `_DB_PREFIX_` prefix.
+ 2. Table names should have the exact name as the object they reflect. : For class `Cart` table name is `prefix_cart`, where `prefix` is replaced by the actual prefix, `qlo_`, by default.
+ 3. Table names have to be singular: `prefix_customer`.
+ 4. Save the data for languages in a table that is named exactly the same as the object's table, and with the `_lang` suffix. For example, `prefix_product_lang`.
 
-For SQL queries
+For SQL queries:
  1. Write keywords in uppercase.
  ```SQL
   SELECT `firstname`

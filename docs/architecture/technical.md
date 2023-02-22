@@ -4,11 +4,11 @@
 - **View End**: HTML, CSS, JS
 - **Language Used**: PHP
 - **Database**: MySQL, XML
-- **Template Engine**: SMARTY
+- **Template Engine**: Smarty
 - **Technology**: JavaQuery, SASS, Bootstrap
 
 
-## MVC (Model–view–controller)
+## MVC (Model–View–Controller)
 [MVC](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller) is a software design pattern containing three main logical components.
 
 Each of these parts is worked to deal with explicit advancement parts of an application. MVC is one of the most habitually utilized industry-standard web improvement systems to make adaptable and extensible systems.
@@ -23,6 +23,6 @@ The View part is utilized for all the UI logics of the application. For instance
 
 ### Controller
 
-Controllers go about as an interface among Model and View segments to handle all the business logics and approaching solicitations, control data utilizing the Model segment and cooperate with the Views to deliver the last yield.
+Controllers go about as an interface between Model and View segments to handle all the business logics and approaching solicitations, control data utilizing the Model segment and cooperate with the Views to deliver the last yield.
 
 For instance, the Customer controller will deal with all the cooperations and contributions from the Customer View and update the database utilizing the Customer Model. A similar controller will be utilized to see the Customer data.
