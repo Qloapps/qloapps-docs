@@ -510,7 +510,7 @@ As API calls return the value for all languages installed in the website by defa
 - **/api/room_types/1?language=[1|2]** : Returns room type with id = 1 with translated fields for Language with id 1 or 2
 - **/api/room_types/1?language=[3,5]** : Returns room type with id = 1 with translated fields for Language with id from 3 to 5
 
-
+</br>
 
 ## Availability & Rates search API
 
@@ -518,7 +518,14 @@ QloApps provides an advance API for getting availability and rates information o
 
 With the help of this api, you can get the information of the inventories and rates of room types for the requested hotel/property and a date duration. You can also filter results according to the available parameters in the request.
 
-#### API endpoint
+There are two methods available for getting availability and rates:
+
+1. [**Get Availability & Rates information for Entire Date Range**](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#get-availability--rates-information-for-entire-date-range) : To get availability & rates infomation for the entire requested date range
+
+2. [**Get Availability & Rates information with Date Wise Break-down**](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#get-availability--rates-information-with-date-wise-break-down) : To get information of availability & rates for every date(Date wise breakdowm) in the requested date range
+
+
+### API endpoint
 
 If QloApps is launched at url http://example.com then endpoint of the availability & rates search api will be :
 
@@ -554,6 +561,7 @@ After requesting for the schema, you will get below format of the schema of the 
         <get_booked_rooms></get_booked_rooms>
         <get_partial_available_rooms></get_partial_available_rooms>
         <get_unavailable_rooms></get_unavailable_rooms>
+        <date_wise_breakdown></date_wise_breakdown>
         <associations>
             <room_occupancies>
                 <room_occupancy>
@@ -590,6 +598,7 @@ After requesting for the synopsis, you will get below format of the synopsis of 
         <get_booked_rooms format="isBool"></get_booked_rooms>
         <get_partial_available_rooms format="isBool"></get_partial_available_rooms>
         <get_unavailable_rooms format="isBool"></get_unavailable_rooms>
+        <date_wise_breakdown format="isBool"></date_wise_breakdown>
         <associations>
             <room_occupancies nodeType="room_occupancy" api="room_occupancies">
                 <room_occupancy>
@@ -653,6 +662,13 @@ To get the Availability & Rates information you have to fill the blank schema wi
 >
 > **Description** : If you want the information of unavailable rooms in the response for your api request then include this field and send the value 1 for this field in the request xml. By default, only all available rooms data will be sent in the response.
 
+#### date_wise_breakdown
+> **Required** : false
+>
+> **Default value** : 0
+>
+> **Description** : If you want availability and rates information for all the dates individually in the provided date range then include this field and send the value 1 for this field in the request xml. By default, availability and rates information for entire date range will be sent in the response.
+
 #### room_occupancies
 > **Required** : false
 >
@@ -660,16 +676,20 @@ To get the Availability & Rates information you have to fill the blank schema wi
 >
 > Create a **< room_occupancy >** tag for every room room_occupancy information under **< room_occupancies >** tag. Send number of adults and children for room_occupancy of every room under **< room_occupancy >** tag.
 
+<br/>
 
-### Get Availability & Rates information
+### Get Availability & Rates information for Entire Date Range
+
+Use this method to get availability & rates information for the entire requested date range.
 
 #### Steps
 
-To get information of availability & rates, follow the below steps.
+Follow the below steps.
 
 - GET the XML blank schema for the api with url http://example.com/api/hotel_ari?ws_key=MNBDHALDK122DA879ADAD12ASKSK12W3&schema=blank
 - Fill the blank schema with your data.
 - Send HTTP POST request with the changed XML as body content to the api endpoint.
+- No need to send **`<date_wise_breakdown>`** node in the request XML to get availability and rates for entire date range.
 
 #### Request XML
 
@@ -679,7 +699,7 @@ Create request xml for the api according to your requirements. Request xml forma
 <qloapps xmlns:xlink="http://www.w3.org/1999/xlink">
     <hotel_ari>
         <id_hotel>1</id_hotel>
-        <date_from>2022-12-29</date_from>
+        <date_from>2022-12-28</date_from>
         <date_to>2022-12-30</date_to>
         <get_available_rooms>1</get_available_rooms>
         <get_booked_rooms>1</get_booked_rooms>
@@ -713,7 +733,7 @@ Create request xml for the api according to your requirements. Request xml forma
 
 **Method**: POST
 
-**Request body**: Get the xml request body from [Request XML](https://devdocs.qloapps.com/webservice/advance-api-uses.html#request-xml) of api.
+**Request body**: Get the xml request body from [Request XML](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#request-xml) of api.
 
 #### Response XML
 
@@ -723,14 +743,14 @@ Below is the full response in xml format for the api request.
 <?xml version="1.0" encoding="UTF-8"?>
 <qloapps xmlns:xlink="http://www.w3.org/1999/xlink">
     <hotel_ari>
-        <id_hotel xlink:href="http://192.168.15.85/hotelcommerce-api/api/hotels/1">
+        <id_hotel xlink:href="http://example.com/hotelcommerce-api/api/hotels/1">
             <![CDATA[1]]>
         </id_hotel>
         <date_from>
-            <![CDATA[2022-12-29]]>
+            <![CDATA[2022-12-28]]>
         </date_from>
         <date_to>
-            <![CDATA[2022-12-31]]>
+            <![CDATA[2022-12-30]]>
         </date_to>
         <currency>
             <![CDATA[USD]]>
@@ -745,14 +765,14 @@ Below is the full response in xml format for the api request.
             <![CDATA[2]]>
         </total_unavailable_rooms>
         <total_partial_available_rooms>
-            <![CDATA[2]]>
+            <![CDATA[4]]>
         </total_partial_available_rooms>
         <total_booked_rooms>
             <![CDATA[2]]>
         </total_booked_rooms>
         <room_types>
-            <room_type id="1" xlink:href="http://192.168.15.85/hotelcommerce-api/api/room_types/1">
-                <id_room_type xlink:href="http://192.168.15.85/hotelcommerce-api/api/room_types/1">
+            <room_type id="1" xlink:href="http://example.com/hotelcommerce-api/api/room_types/1">
+                <id_room_type xlink:href="http://example.com/hotelcommerce-api/api/room_types/1">
                     <![CDATA[1]]>
                 </id_room_type>
                 <base_price>
@@ -768,10 +788,10 @@ Below is the full response in xml format for the api request.
                     <![CDATA[2400]]>
                 </total_price_with_tax>
                 <name>
-                    <language id="1" xlink:href="http://192.168.15.85/hotelcommerce-api/api/languages/1">
+                    <language id="1" xlink:href="http://example.com/hotelcommerce-api/api/languages/1">
                         <![CDATA[General Rooms]]>
                     </language>
-                    <language id="3" xlink:href="http://192.168.15.85/hotelcommerce-api/api/languages/3">
+                    <language id="3" xlink:href="http://example.com/hotelcommerce-api/api/languages/3">
                         <![CDATA[General Rooms frr]]>
                     </language>
                 </name>
@@ -838,8 +858,8 @@ Below is the full response in xml format for the api request.
                     </partial_available>
                 </rooms>
             </room_type>
-            <room_type id="2" xlink:href="http://192.168.15.85/hotelcommerce-api/api/room_types/2">
-                <id_room_type xlink:href="http://192.168.15.85/hotelcommerce-api/api/room_types/2">
+            <room_type id="2" xlink:href="http://example.com/hotelcommerce-api/api/room_types/2">
+                <id_room_type xlink:href="http://example.com/hotelcommerce-api/api/room_types/2">
                     <![CDATA[2]]>
                 </id_room_type>
                 <base_price>
@@ -855,10 +875,10 @@ Below is the full response in xml format for the api request.
                     <![CDATA[3600]]>
                 </total_price_with_tax>
                 <name>
-                    <language id="1" xlink:href="http://192.168.15.85/hotelcommerce-api/api/languages/1">
+                    <language id="1" xlink:href="http://example.com/hotelcommerce-api/api/languages/1">
                         <![CDATA[Delux Rooms]]>
                     </language>
-                    <language id="2" xlink:href="http://192.168.15.85/hotelcommerce-api/api/languages/2">
+                    <language id="2" xlink:href="http://example.com/hotelcommerce-api/api/languages/2">
                         <![CDATA[Delux Rooms frr]]>
                     </language>
                 </name>
@@ -936,7 +956,7 @@ Below is the full response in xml format for the api request.
 
 **Method**: POST
 
-**Request body**: Get the request xml body content from [Request XML](https://devdocs.qloapps.com/webservice/advance-api-uses.html#request-xml) of api.
+**Request body**: Get the request xml body content from [Request XML](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#request-xml) of api.
 
 #### Response JSON
 Below is the full response in json format for the api request.
@@ -945,13 +965,13 @@ Below is the full response in json format for the api request.
 {
    "hotel_ari": {
         "id_hotel": "1",
-        "date_from": "2022-12-29",
+        "date_from": "2022-12-28",
         "date_to": "2022-12-30",
         "currency": "USD",
         "total_rooms": 10,
         "total_available_rooms": 4,
         "total_unavailable_rooms": 2,
-        "total_partial_available_rooms": 2,
+        "total_partial_available_rooms": 4,
         "total_booked_rooms": 2,
         "room_types": [
             {
@@ -972,26 +992,26 @@ Below is the full response in json format for the api request.
                 ],
                 "rooms": {
                     "available": [
-                            {
-                                "id_room": "1",
-                                "room_number": "A-101"
-                            },
-                            {
-                                "id_room": "2",
+                        {
+                            "id_room": "1",
+                            "room_number": "A-101"
+                        },
+                        {
+                            "id_room": "2",
                                 "room_number": "A-102"
-                            }
+                        }
                     ],
                     "unavailable": [
-                            {
-                                "id_room": "3",
-                                "room_number": "A-103"
-                            }
+                        {
+                            "id_room": "3",
+                            "room_number": "A-103"
+                        }
                     ],
                     "booked": [
-                            {
-                                "id_room": "4",
-                                "room_number": "A-104"
-                            }
+                        {
+                            "id_room": "4",
+                            "room_number": "A-104"
+                        }
                     ],
                     "partially_available": [
                         {
@@ -1035,26 +1055,26 @@ Below is the full response in json format for the api request.
                 ],
                 "rooms": {
                     "available": [
-                            {
-                                "id_room": "7",
-                                "room_number": "B-101"
-                            },
-                            {
-                                "id_room": "8",
-                                "room_number": "B-102"
-                            }
+                        {
+                            "id_room": "7",
+                            "room_number": "B-101"
+                        },
+                        {
+                            "id_room": "8",
+                            "room_number": "B-102"
+                        }
                     ],
                     "unavailable": [
-                            {
-                                "id_room": "9",
-                                "room_number": "B-103"
-                            }
+                        {
+                            "id_room": "9",
+                            "room_number": "B-103"
+                        }
                     ],
                     "booked": [
-                            {
-                                "id_room": "10",
-                                "room_number": "B-104"
-                            }
+                        {
+                            "id_room": "10",
+                            "room_number": "B-104"
+                        }
                     ],
                     "partially_available": [
                         {
@@ -1082,5 +1102,656 @@ Below is the full response in json format for the api request.
             }
         ]
     }
+}
+```
+
+<br/>
+
+### Get Availability & Rates information with Date Wise Break-down
+
+Use this method to get availability & rates information for every date(Date wise breakdowm) in the requested date range.
+
+#### Steps
+
+Follow the below steps.
+
+- GET the XML blank schema for the api with url http://example.com/api/hotel_ari?ws_key=MNBDHALDK122DA879ADAD12ASKSK12W3&schema=blank
+- Fill the blank schema with your data.
+- Send **`<date_wise_breakdown>` node value to 1** in the request XML to get availability and rates for every date in the date range.
+- Send HTTP POST request with the changed XML as body content to the api endpoint.
+
+#### Request XML for date wise breakdown
+
+Create request xml for the api according to your requirements. Request xml format for the api will be as below.
+
+```xml
+<qloapps xmlns:xlink="http://www.w3.org/1999/xlink">
+    <hotel_ari>
+        <id_hotel>1</id_hotel>
+        <date_from>2022-12-28</date_from>
+        <date_to>2022-12-30</date_to>
+        <get_available_rooms>1</get_available_rooms>
+        <get_booked_rooms>1</get_booked_rooms>
+        <get_unavailable_rooms>1</get_unavailable_rooms>
+        <date_wise_breakdown>1</date_wise_breakdown>
+        <associations>
+            <room_occupancies>
+                <room_occupancy>
+                    <adults>2</adults>
+                    <children>0</children>
+                </room_occupancy>
+                <room_occupancy>
+                    <adults>3</adults>
+                    <children>2</children>
+                </room_occupancy>
+            </room_occupancies>
+        </associations>
+    </hotel_ari>
+</qloapps>
+
+```
+---
+
+**NOTE**: You can get the response in XML or JSON format. Request XML will be same for both requests i.e. either you want the response in XML format or JSON format.
+
+---
+
+---
+
+**NOTE**: **`<partial_available>`** node will not be present in the response for **date_wise_breakdown** (Date Wise Breakdown) requests. Because availability and rates will be sent individually for every date and for a single day, there is no use of partial available rooms.
+
+---
+
+### Get response in XML
+
+**Url**: http://example.com/api/hotel_ari?ws_key=MNBDHALDK122DA879ADAD12ASKSK12W3
+
+**Method**: POST
+
+**Request body**: Get the xml request body from [Request XML for date wise breakdown](https://devdocs.qloapps.com/webservice/advanced-api-uses.html##request-xml-for-date-wise-breakdown) of api.
+
+#### Response XML
+
+Below is the full response in xml format for the api request.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<qloapps xmlns:xlink="http://www.w3.org/1999/xlink">
+    <hotel_aris>
+        <hotel_ari>
+            <id_hotel xlink:href="http://example.com/hotelcommerce-ari/api/hotels/1">
+                <![CDATA[1]]>
+            </id_hotel>
+            <date_from>
+                <![CDATA[2022-12-28]]>
+            </date_from>
+            <date_to>
+                <![CDATA[2022-12-29]]>
+            </date_to>
+            <currency>
+                <![CDATA[EUR]]>
+            </currency>
+            <total_rooms>
+                <![CDATA[10]]>
+            </total_rooms>
+            <total_available_rooms>
+                <![CDATA[6]]>
+            </total_available_rooms>
+            <total_unavailable_rooms>
+                <![CDATA[2]]>
+            </total_unavailable_rooms>
+            <total_booked_rooms>
+                <![CDATA[2]]>
+            </total_booked_rooms>
+            <room_types>
+                <room_type id="1" xlink:href="http://example.com/hotelcommerce-ari/api/room_types/1">
+                    <id_room_type xlink:href="http://example.com/hotelcommerce-ari/api/room_types/1">
+                        <![CDATA[1]]>
+                    </id_room_type>
+                    <base_price>
+                        <![CDATA[1000]]>
+                    </base_price>
+                    <base_price_with_tax>
+                        <![CDATA[1200]]>
+                    </base_price_with_tax>
+                    <total_price>
+                        <![CDATA[1000]]>
+                    </total_price>
+                    <total_price_with_tax>
+                        <![CDATA[1200]]>
+                    </total_price_with_tax>
+                    <name>
+                        <language id="1" xlink:href="http://example.com/hotelcommerce-ari/api/languages/1">
+                            <![CDATA[General Rooms]]>
+                        </language>
+                        <language id="4" xlink:href="http://example.com/hotelcommerce-ari/api/languages/4">
+                            <![CDATA[General Rooms]]>
+                        </language>
+                    </name>
+                    <rooms>
+                        <unavailable>
+                            <room id="4">
+                                <id_room>
+                                    <![CDATA[4]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[A-104]]>
+                                </room_number>
+                            </room>
+                        </unavailable>
+                        <booked>
+                            <room id="1">
+                                <id_room>
+                                    <![CDATA[1]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[A-101]]>
+                                </room_number>
+                            </room>
+                        </booked>
+                        <available>
+                            <room id="2">
+                                <id_room>
+                                    <![CDATA[2]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[A-102]]>
+                                </room_number>
+                            </room>
+                            <room id="3">
+                                <id_room>
+                                    <![CDATA[3]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[A-103]]>
+                                </room_number>
+                            </room>
+                            <room id="5">
+                                <id_room>
+                                    <![CDATA[5]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[A-105]]>
+                                </room_number>
+                            </room>
+                        </available>
+                    </rooms>
+                </room_type>
+                <room_type id="2" xlink:href="http://example.com/hotelcommerce-ari/api/room_types/2">
+                    <id_room_type xlink:href="http://example.com/hotelcommerce-ari/api/room_types/2">
+                        <![CDATA[2]]>
+                    </id_room_type>
+                    <base_price>
+                        <![CDATA[1500]]>
+                    </base_price>
+                    <base_price_with_tax>
+                        <![CDATA[1800]]>
+                    </base_price_with_tax>
+                    <total_price>
+                        <![CDATA[1500]]>
+                    </total_price>
+                    <total_price_with_tax>
+                        <![CDATA[1800]]>
+                    </total_price_with_tax>
+                    <name>
+                        <language id="1" xlink:href="http://example.com/hotelcommerce-ari/api/languages/1">
+                            <![CDATA[Delux Rooms]]>
+                        </language>
+                        <language id="4" xlink:href="http://example.com/hotelcommerce-ari/api/languages/4">
+                            <![CDATA[Delux Rooms]]>
+                        </language>
+                    </name>
+                    <rooms>
+                        <unavailable>
+                            <room id="9">
+                                <id_room>
+                                    <![CDATA[9]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[B-104]]>
+                                </room_number>
+                            </room>
+                        </unavailable>
+                        <booked>
+                            <room id="6">
+                                <id_room>
+                                    <![CDATA[6]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[B-101]]>
+                                </room_number>
+                            </room>
+                        </booked>
+                        <available>
+                            <room id="7">
+                                <id_room>
+                                    <![CDATA[7]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[B-102]]>
+                                </room_number>
+                            </room>
+                            <room id="8">
+                                <id_room>
+                                    <![CDATA[8]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[B-103]]>
+                                </room_number>
+                            </room>
+                            <room id="10">
+                                <id_room>
+                                    <![CDATA[10]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[B-105]]>
+                                </room_number>
+                            </room>
+                        </available>
+                    </rooms>
+                </room_type>
+            </room_types>
+        </hotel_ari>
+        <hotel_ari>
+            <id_hotel xlink:href="http://example.com/hotelcommerce-ari/api/hotels/1">
+                <![CDATA[1]]>
+            </id_hotel>
+            <date_from>
+                <![CDATA[2022-12-29]]>
+            </date_from>
+            <date_to>
+                <![CDATA[2022-12-30]]>
+            </date_to>
+            <currency>
+                <![CDATA[EUR]]>
+            </currency>
+            <total_rooms>
+                <![CDATA[10]]>
+            </total_rooms>
+            <total_available_rooms>
+                <![CDATA[4]]>
+            </total_available_rooms>
+            <total_unavailable_rooms>
+                <![CDATA[2]]>
+            </total_unavailable_rooms>
+            <total_booked_rooms>
+                <![CDATA[4]]>
+            </total_booked_rooms>
+            <room_types>
+                <room_type id="1" xlink:href="http://example.com/hotelcommerce-ari/api/room_types/1">
+                    <id_room_type xlink:href="http://example.com/hotelcommerce-ari/api/room_types/1">
+                        <![CDATA[1]]>
+                    </id_room_type>
+                    <base_price>
+                        <![CDATA[1000]]>
+                    </base_price>
+                    <base_price_with_tax>
+                        <![CDATA[1200]]>
+                    </base_price_with_tax>
+                    <total_price>
+                        <![CDATA[1000]]>
+                    </total_price>
+                    <total_price_with_tax>
+                        <![CDATA[1200]]>
+                    </total_price_with_tax>
+                    <name>
+                        <language id="1" xlink:href="http://example.com/hotelcommerce-ari/api/languages/1">
+                            <![CDATA[General Rooms]]>
+                        </language>
+                        <language id="4" xlink:href="http://example.com/hotelcommerce-ari/api/languages/4">
+                            <![CDATA[General Rooms]]>
+                        </language>
+                    </name>
+                    <rooms>
+                        <unavailable>
+                            <room id="3">
+                                <id_room>
+                                    <![CDATA[3]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[A-103]]>
+                                </room_number>
+                            </room>
+                        </unavailable>
+                        <booked>
+                            <room id="2">
+                                <id_room>
+                                    <![CDATA[2]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[A-102]]>
+                                </room_number>
+                            </room>
+                            <room id="5">
+                                <id_room>
+                                    <![CDATA[5]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[A-105]]>
+                                </room_number>
+                            </room>
+                        </booked>
+                        <available>
+                            <room id="1">
+                                <id_room>
+                                    <![CDATA[1]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[A-101]]>
+                                </room_number>
+                            </room>
+                            <room id="4">
+                                <id_room>
+                                    <![CDATA[4]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[A-104]]>
+                                </room_number>
+                            </room>
+                        </available>
+                    </rooms>
+                </room_type>
+                <room_type id="2" xlink:href="http://example.com/hotelcommerce-ari/api/room_types/2">
+                    <id_room_type xlink:href="http://example.com/hotelcommerce-ari/api/room_types/2">
+                        <![CDATA[2]]>
+                    </id_room_type>
+                    <base_price>
+                        <![CDATA[1500]]>
+                    </base_price>
+                    <base_price_with_tax>
+                        <![CDATA[1800]]>
+                    </base_price_with_tax>
+                    <total_price>
+                        <![CDATA[1500]]>
+                    </total_price>
+                    <total_price_with_tax>
+                        <![CDATA[1800]]>
+                    </total_price_with_tax>
+                    <name>
+                        <language id="1" xlink:href="http://example.com/hotelcommerce-ari/api/languages/1">
+                            <![CDATA[Delux Rooms]]>
+                        </language>
+                        <language id="4" xlink:href="http://example.com/hotelcommerce-ari/api/languages/4">
+                            <![CDATA[Delux Rooms]]>
+                        </language>
+                    </name>
+                    <rooms>
+                        <unavailable>
+                            <room id="8">
+                                <id_room>
+                                    <![CDATA[8]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[B-103]]>
+                                </room_number>
+                            </room>
+                        </unavailable>
+                        <booked>
+                            <room id="6">
+                                <id_room>
+                                    <![CDATA[6]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[B-101]]>
+                                </room_number>
+                            </room>
+                            <room id="7">
+                                <id_room>
+                                    <![CDATA[7]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[B-102]]>
+                                </room_number>
+                            </room>
+                        </booked>
+                        <available>
+                            <room id="9">
+                                <id_room>
+                                    <![CDATA[9]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[B-104]]>
+                                </room_number>
+                            </room>
+                            <room id="10">
+                                <id_room>
+                                    <![CDATA[10]]>
+                                </id_room>
+                                <room_number>
+                                    <![CDATA[B-105]]>
+                                </room_number>
+                            </room>
+                        </available>
+                    </rooms>
+                </room_type>
+            </room_types>
+        </hotel_ari>
+    </hotel_aris>
+</qloapps>
+```
+
+### Get response in JSON
+
+**Url**: http://example.com/api/hotel_ari?ws_key=MNBDHALDK122DA879ADAD12ASKSK12W3&output_format=JSON
+
+**Method**: POST
+
+**Request body**: Get the request xml body content from [Request XML for date wise breakdown](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#request-xml-for-date-wise-breakdown) of api.
+
+#### Response JSON
+Below is the full response in json format for the api request.
+
+```json
+{
+	"hotel_aris": [
+		{
+			"id_hotel": "1",
+			"date_from": "2022-12-28",
+			"date_to": "2022-12-29",
+			"currency": "EUR",
+			"total_rooms": 10,
+			"total_available_rooms": 6,
+			"total_unavailable_rooms": 2,
+			"total_booked_rooms": 2,
+			"room_types": [
+				{
+					"id_room_type": "1",
+					"base_price": 1000,
+					"base_price_with_tax": 1200,
+					"total_price": 1000,
+					"total_price_with_tax": 1200,
+					"name": [
+						{
+							"id": "1",
+							"value": "General Rooms"
+						},
+						{
+							"id": "4",
+							"value": "General Rooms"
+						}
+					],
+					"rooms": {
+						"unavailable": [
+							{
+								"id_room": "4",
+								"room_number": "A-104"
+							}
+						],
+						"booked": [
+							{
+								"id_room": "1",
+								"room_number": "A-101"
+							}
+						],
+						"available": [
+							{
+								"id_room": "2",
+								"room_number": "A-102"
+							},
+							{
+								"id_room": "3",
+								"room_number": "A-103"
+							},
+							{
+								"id_room": "5",
+								"room_number": "A-105"
+							}
+						]
+					}
+				},
+				{
+					"id_room_type": "2",
+					"base_price": 1500,
+					"base_price_with_tax": 1800,
+					"total_price": 1500,
+					"total_price_with_tax": 1800,
+					"name": [
+						{
+							"id": "1",
+							"value": "Delux Rooms"
+						},
+						{
+							"id": "4",
+							"value": "Delux Rooms"
+						}
+					],
+					"rooms": {
+						"unavailable": [
+							{
+								"id_room": "9",
+								"room_number": "B-104"
+							}
+						],
+						"booked": [
+							{
+								"id_room": "6",
+								"room_number": "B-101"
+							}
+						],
+						"available": [
+							{
+								"id_room": "7",
+								"room_number": "B-102"
+							},
+							{
+								"id_room": "8",
+								"room_number": "B-103"
+							},
+							{
+								"id_room": "10",
+								"room_number": "B-105"
+							},
+							{
+								"id_room": "8",
+								"room_number": "B-103"
+							}
+						]
+					}
+				}
+			]
+		},
+		{
+			"id_hotel": "1",
+			"date_from": "2022-12-29",
+			"date_to": "2022-12-30",
+			"currency": "EUR",
+			"total_rooms": 10,
+			"total_available_rooms": 4,
+			"total_unavailable_rooms": 2,
+			"total_booked_rooms": 4,
+			"room_types": [
+				{
+					"id_room_type": "1",
+					"base_price": 1000,
+					"base_price_with_tax": 1200,
+					"total_price": 1000,
+					"total_price_with_tax": 1200,
+					"name": [
+						{
+							"id": "1",
+							"value": "General Rooms"
+						},
+						{
+							"id": "4",
+							"value": "General Rooms"
+						}
+					],
+					"rooms": {
+						"unavailable": [
+							{
+								"id_room": "3",
+								"room_number": "A-103"
+							}
+						],
+						"booked": [
+							{
+								"id_room": "2",
+								"room_number": "A-102"
+							},
+							{
+								"id_room": "5",
+								"room_number": "A-105"
+							}
+						],
+						"available": [
+							{
+								"id_room": "1",
+								"room_number": "A-101"
+							},
+							{
+								"id_room": "4",
+								"room_number": "A-104"
+							}
+						]
+					}
+				},
+				{
+					"id_room_type": "2",
+					"base_price": 1500,
+					"base_price_with_tax": 1800,
+					"total_price": 1500,
+					"total_price_with_tax": 1800,
+					"name": [
+						{
+							"id": "1",
+							"value": "Delux Rooms"
+						},
+						{
+							"id": "4",
+							"value": "Delux Rooms"
+						}
+					],
+					"rooms": {
+						"unavailable": [
+							{
+								"id_room": "8",
+								"room_number": "B-103"
+							}
+						],
+						"booked": [
+							{
+								"id_room": "6",
+								"room_number": "B-101"
+							},
+							{
+								"id_room": "7",
+								"room_number": "B-102"
+							}
+						],
+						"available": [
+							{
+								"id_room": "9",
+								"room_number": "B-104"
+							},
+							{
+								"id_room": "10",
+								"room_number": "B-105"
+							}
+						]
+					}
+				}
+			]
+		}
+	]
 }
 ```
