@@ -5,7 +5,7 @@
 - **Language Used**: PHP
 - **Database**: MySQL, XML
 - **Template Engine**: Smarty
-- **Technology**: JavaQuery, SASS, Bootstrap
+- **Technology**: JavaScript, jQuery, SASS, Bootstrap
 
 
 ## MVC (Model–View–Controller)
