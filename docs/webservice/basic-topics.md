@@ -48,6 +48,29 @@ We recomend you to use API clients like **Postman** or **Insomnia** to test/call
 
 **_As you can see that no authentication process is required to access the APIs. So you need to be very careful with you access key rights._**
 
+### Authorization header
+You can use Authorization header to access your APIs. In this method, a **base64_encode compute of your user:password couple** is used in place of exposing the API key directly. In QloApps API, user with empty password is used.
+
+To compute the authorization key, you have to follow below code:
+
+```php
+<?php
+    $apiKey = `MNBDHALDK122DA879ADAD12ASKSK12W3`;
+    // Encode and you can use the value in your request header
+    $authorizationKey = base64_encode($apiKey . ':'); // TU5CREhBTERLMTIyREE4NzlBREFEMTJBU0tTSzEyVzM6
+```
+
+#### Key|Value for Authorization header
+
+| Key           | Value                                              |
+| :---          | :---                                               |
+| Authorization | Basic TU5CREhBTERLMTIyREE4NzlBREFEMTJBU0tTSzEyVzM6 |
+
+*Here Value for the Authorization key is = **base64_encode($apiKey . ':')***
+
+It is recommended to **use API clients such as Postman** for API testing. It is easier to switch with HTTP methods and to set request parameters and headers through this.
+
+
 ### Learn to use webservice API
 
 #### Resource description
@@ -203,5 +226,10 @@ Example:
 GET /api/ HTTP/1.1
 Host: example.com
 Output-Format: JSON
-Authorization: Basic VUNDTExROU4yQVJTSFdDWExUNzRLVUtTU0szNEJGS1g6
+Authorization: Basic TU5CREhBTERLMTIyREE4NzlBREFEMTJBU0tTSzEyVzM6
 ```
+---
+
+**NOTE**: In the above example, the API key is encoded with base64_encode() for use in headers. Visit [Authorization header](./basic-topics.md#authorization-header) for detail.
+
+---
