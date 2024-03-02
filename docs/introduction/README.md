@@ -2,7 +2,7 @@
 
 QloApps is one of a kind true open source hotel reservation system and a booking engine. The system is dedicated to channeling the power of the open-source community to serve the hospitality industry.
 
-QloApps is built on PHP while MySQL is used to manage databases apart from these languages HTML, CSS, Javascript, and JavaQuery are also used. Smarty is used as a templating engine. [QloApps architecture](../architecture/technical)
+QloApps is built on PHP while MySQL is used to manage databases apart from these languages HTML, CSS, JavaScript and jQuery are also used. Smarty is used as a templating engine. [QloApps architecture](../architecture/technical)
 
 Along with these languages, you must be familiar with Object-Oriented Programming to start development on QloApps.
 
