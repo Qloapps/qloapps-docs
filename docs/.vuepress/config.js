@@ -17,7 +17,8 @@ module.exports = {
         editLinkText: 'Help us improve this page!',
         smoothScroll: true,
         nav: [
-            { text: 'Guide', link: '/' },
+            { text: 'Download', link: 'https://qloapps.com/download/' },
+            { text: 'User Guide', link: 'https://docs.qloapps.com/' },
             { text: 'Forum', link: 'https://forums.qloapps.com/' },
             { text: 'Extensions', link: 'https://qloapps.com/addons/' },
         ],
@@ -134,6 +135,12 @@ module.exports = {
         ],
     },
     plugins: [
+        [
+            '@vuepress/medium-zoom',
+            {
+                background: '#000',
+            }
+        ],
         ['@vuepress/back-to-top', 'code-copy'],
         ['container', {
             type: 'dir',
