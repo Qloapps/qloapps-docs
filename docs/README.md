@@ -11,5 +11,7 @@ features:
   details: Learn how to create themes and modules for QloApps.
 - title: API Documentation
   details: Learn how to integrate your systems with QloApps via APIs.
-footer: Copyright © 2024 QloApps
 ---
+::: slot footer
+<Copyright/>
+:::
