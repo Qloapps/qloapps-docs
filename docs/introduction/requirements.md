@@ -252,6 +252,7 @@ To install QloApps, you will need the following server configurations for hosted
 </table>
 
 **Note**
+- Supported MariaDB version- V10.5, V10.6 , V10.11 , V11.0, V11.2 and V11.4
 - SSH or FTP access (ask your hosting service provider for your credentials)
 - SSL certificate if you plan to process payments internally (not using PayPal for instance)
 
@@ -531,4 +532,7 @@ To install QloApps, you will need the following server configurations for hosted
   </tr>
 </tbody>
 </table>
+
+**Note**
+- Supported MariaDB version- V10.5, V10.6 , V10.11 , V11.0, V11.2 and V11.4
 
