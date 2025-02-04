@@ -195,7 +195,7 @@ Now while uninstallation process, let's perform below tasks:
 ```php
 public function uninstall()
 {
-    if (!parent::install()
+    if (!parent::uninstall()
         || !Configuration::deleteByName('MYQLOMODULE_NAME')
         || !$this->dropModuleTables()
     ) {
