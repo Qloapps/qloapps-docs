@@ -16,7 +16,7 @@ To install QloApps, you will need the following server configurations for hosted
   <thead>
     <tr>
       <th></th>
-      <th colspan="12" style="text-align:center">PHP Version</th>
+      <th colspan="14" style="text-align:center">PHP Version</th>
     </tr>
     <tr class="h-version-titles">
       <th>QloApps Version</th>
@@ -31,7 +31,9 @@ To install QloApps, you will need the following server configurations for hosted
       <th>7.2</th>
       <th>7.3</th>
       <th>7.4</th>
-      <th>&ge;&nbsp;8.0</th>
+      <th>8.0</th>
+      <th>&ge;&nbsp;8.1</th>
+      <th>&le;&nbsp;8.4</th>
     </tr>
   </thead>
 <tbody>
@@ -45,6 +47,8 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
@@ -64,6 +68,8 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
   </tr>
   <tr>
     <td>1.5.0</td>
@@ -75,6 +81,8 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
@@ -94,6 +102,8 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
   </tr>
   <tr>
     <td>1.5.2</td>
@@ -108,6 +118,8 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
   </tr>
   <tr>
@@ -124,6 +136,8 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
   </tr>
   <tr>
     <td>1.6.1</td>
@@ -139,6 +153,25 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+  </tr>
+  <tr>
+    <td>1.7.0</td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-yes"><span class="sr-only">Yes</span></td>
+    <td class="support-yes"><span class="sr-only">Yes</span></td>
   </tr>
 </tbody>
 </table>
@@ -248,6 +281,15 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
   </tr>
+  <tr>
+    <td>1.7.0</td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-yes"><span class="sr-only">Yes</span></td>
+    <td class="support-yes"><span class="sr-only">Yes</span></td>
+  </tr>
 </tbody>
 </table>
 
@@ -301,7 +343,9 @@ To install QloApps, you will need the following server configurations for hosted
       <th>7.2</th>
       <th>7.3</th>
       <th>7.4</th>
-      <th>&ge;&nbsp;8.0</th>
+      <th>8.0</th>
+      <th>&ge;&nbsp;8.1</th>
+      <th>&le;&nbsp;8.4</th>
     </tr>
   </thead>
 <tbody>
@@ -318,6 +362,8 @@ To install QloApps, you will need the following server configurations for hosted
       <i class="fa fa-check" aria-hidden="true" title="Recommended version"></i>
       <span class="sr-only">No</span>
     </td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
@@ -340,6 +386,8 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
   </tr>
   <tr>
     <td>1.5.0</td>
@@ -354,6 +402,8 @@ To install QloApps, you will need the following server configurations for hosted
       <i class="fa fa-check" aria-hidden="true" title="Recommended version"></i>
       <span class="sr-only">No</span>
     </td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
@@ -376,6 +426,8 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
   </tr>
   <tr>
     <td>1.5.2</td>
@@ -390,6 +442,8 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
   </tr>
   <tr>
@@ -406,6 +460,8 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
   </tr>
   <tr>
     <td>1.6.1</td>
@@ -421,6 +477,25 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+  </tr>
+  <tr>
+    <td>1.6.1</td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-yes"><span class="sr-only">Yes</span></td>
+    <td class="support-yes"><span class="sr-only">Yes</span></td>
   </tr>
 </tbody>
 </table>
@@ -527,6 +602,15 @@ To install QloApps, you will need the following server configurations for hosted
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
+    <td class="support-yes"><span class="sr-only">Yes</span></td>
+    <td class="support-yes"><span class="sr-only">Yes</span></td>
+  </tr>
+  <tr>
+    <td>1.7.0</td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
+    <td class="support-no"><span class="sr-only">No</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
     <td class="support-yes"><span class="sr-only">Yes</span></td>
   </tr>
