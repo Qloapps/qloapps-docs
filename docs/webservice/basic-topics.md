@@ -66,7 +66,7 @@ To compute the authorization key, you have to follow below code:
 | :---          | :---                                               |
 | Authorization | Basic TU5CREhBTERLMTIyREE4NzlBREFEMTJBU0tTSzEyVzM6 |
 
-*Here Value for the Authorization key is = **base64_encode($apiKey . ':')***
+*Here Value for the Authorization key is = **`base64_encode($apiKey . ':')`***
 
 It is recommended to **use API clients such as Postman** for API testing. It is easier to switch with HTTP methods and to set request parameters and headers through this.
 

@@ -4,7 +4,7 @@ Following is the directory structure of QloApps:
 
 ::: dir
 .
-├──  hotelcommerce
+├──  QloApps
 │    ├── Adapter
 │    ├── admin
 │    │   ├──autoupgrade
