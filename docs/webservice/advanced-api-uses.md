@@ -1755,3 +1755,477 @@ Below is the full response in json format for the api request.
 	]
 }
 ```
+
+
+## Bookings API
+
+QloApps provides an advance API for creating and getting a booking.
+
+### API endpoint
+
+If QloApps is launched at url http://example.com then endpoint of the bookings api will be :
+
+**http://example.com/api/bookings**
+
+---
+
+**NOTE**: Replace **domain** and **webservice api key** in the documentaion with your domain and api key while making api requests.
+
+---
+
+### Schema
+
+Suppose your webservice access api key is MNBDHALDK122DA879ADAD12ASKSK12W3. Then schema of the api can be fetched from below request parameters:
+
+**Url**: http://example.com/api/bookings?ws_key=MNBDHALDK122DA879ADAD12ASKSK12W3&schema=blank
+
+**Method**: GET
+
+#### Schema Format
+
+After requesting for the schema, you will get below format of the schema of the availability & rates search api.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<qloapps xmlns:xlink="http://www.w3.org/1999/xlink">
+    <booking>
+        <id/>
+        <id_property/>
+        <currency/>
+        <booking_status/>
+        <payment_status/>
+        <source/>
+        <booking_date/>
+        <remark/>
+        <id_language/>
+        <associations>
+            <customer_detail>
+                <id_customer/>
+                <firstname/>
+                <lastname/>
+                <email/>
+                <phone/>
+                <address/>
+                <city/>
+                <zip/>
+                <state_code/>
+                <country_code/>
+            </customer_detail>
+            <price_details>
+                <total_paid/>
+                <total_price_with_tax/>
+            </price_details>
+            <payment_detail>
+                <payment_type/>
+                <payment_method/>
+                <transaction_id/>
+            </payment_detail>
+            <cart_rules>
+                <cart_rule>
+                    <name/>
+                    <code/>
+                    <type/>
+                    <value/>
+                    <currency/>
+                </cart_rule>
+            </cart_rules>
+            <room_types>
+                <room_type>
+                <id_room_type/>
+                <checkin_date/>
+                <checkout_date/>
+                <number_of_rooms/>
+                    <rooms>
+                        <room>
+                            <id_room/>
+                            <adults/>
+                            <child/>
+                            <child_ages/>
+                            <unit_price_without_tax/>
+                            <id_tax_rules_group/>
+                            <total_tax/>
+                            <services>
+                                <service>
+                                    <id_service/>
+                                    <quantity/>
+                                    <price_mode/>
+                                    <name/>
+                                    <unit_price_without_tax/>
+                                    <total_price_without_tax/>
+                                    <id_tax_rules_group/>
+                                    <total_tax/>
+                                </service>
+                            </services>
+                            <facilities>
+                                <facility>
+                                    <id_facility/>
+                                    <id_option/>
+                                    <name/>
+                                    <unit_price_without_tax/>
+                                    <id_tax_rules_group/>
+                                </facility>
+                            </facilities>
+                        </room>
+                    </rooms>
+                </room_type>
+            </room_types>
+        </associations>
+    </booking>
+</qloapps>
+```
+
+### Synopsis
+
+The synopsis of the API can be fetched from below request parameters:
+
+**Url**: http://example.com/api/bookings?ws_key=MNBDHALDK122DA879ADAD12ASKSK12W3&schema=synopsis
+
+**Method**: GET
+
+#### Synopsis Format
+
+After requesting for the synopsis, you will get below format of the synopsis of the availability & rates search api.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<qloapps xmlns:xlink="http://www.w3.org/1999/xlink">
+    <booking>
+        <id_property required="true"/>
+        <currency/>
+        <booking_status required="true"/>
+        <payment_status required="true"/>
+        <source/>
+        <booking_date/>
+        <remark/>
+        <id_language/>
+        <associations>
+            <customer_detail api="customer_detail">
+                <id_customer/>
+                <firstname required="true"/>
+                <lastname required="true"/>
+                <email required="true"/>
+                <phone required="true"/>
+                <address/>
+                <city/>
+                <zip/>
+                <state_code/>
+                <country_code/>
+            </customer_detail>
+            <price_details api="price_details">
+                <total_paid/>
+                <total_price_with_tax/>
+            </price_details>
+            <payment_detail api="payment_detail">
+                <payment_type/>
+                <payment_method/>
+                <transaction_id/>
+            </payment_detail>
+            <cart_rules nodeType="cart_rule" api="cart_rules">
+                <cart_rule>
+                    <name/>
+                    <code/>
+                    <type/>
+                    <value/>
+                    <currency/>
+                </cart_rule>
+            </cart_rules>
+            <room_types nodeType="room_type" api="room_types">
+                <room_type>
+                    <id_room_type required="true"/>
+                    <checkin_date required="true"/>
+                    <checkout_date required="true"/>
+                    <number_of_rooms required="true"/>
+                    <rooms>
+                        <room>
+                            <id_room/>
+                            <adults/>
+                            <child/>
+                            <child_ages/>
+                            <unit_price_without_tax/>
+                            <id_tax_rules_group/>
+                            <total_tax/>
+                            <services>
+                                <service>
+                                    <id_service/>
+                                    <quantity/>
+                                    <price_mode/>
+                                    <name/>
+                                    <unit_price_without_tax/>
+                                    <total_price_without_tax/>
+                                    <id_tax_rules_group/>
+                                    <total_tax/>
+                                </service>
+                            </services>
+                            <facilities>
+                                <facility>
+                                    <id_facility/>
+                                    <id_option/>
+                                    <name/>
+                                    <unit_price_without_tax/>
+                                    <id_tax_rules_group/>
+                                </facility>
+                            </facilities>
+                        </room>
+                    </rooms>
+                </room_type>
+            </room_types>
+        </associations>
+    </booking>
+</qloapps>
+```
+
+### Schema / Synopsis Xml field details
+To create a booking you have to fill the blank schema with your data according to your requirements. So here we are explaining all the fields used in the xml of request body for api calls.
+
+#### id_property
+> **Required** : true
+>
+> **Description** : Id of the property/hotel for which you want to create the boooking using the api request.
+
+#### booking_status
+> **Required** : true
+>
+> **Description** : booking status new = 1, completed = 2, cancelled = 3 and refunded = 4.
+
+#### payment_status
+> **Required** : true
+>
+> **Description** : status of the payement completed = 1, partial = 2 and awating = 3, for these the booking status needs to be 1(new).
+
+#### customer_detail
+> **Required** : true
+>
+> **Description** : customer details such as firstname, lastname, email and phone are required or a valid id_customer can be used instead.
+
+#### room_types
+> **Required** : true
+>
+> **Description** : This includes the booking information for the room type, such as id_room_type, check-in date, check-out date and number of rooms.
+
+<br/>
+
+### Get booking Information
+
+Use this method to get the booking details.
+
+---
+
+### Get response in XML
+
+**Url**: http://example.com/api/bookings/1?ws_key=MNBDHALDK122DA879ADAD12ASKSK12W3
+
+**Method**: GET
+
+#### Response XML
+
+Below is the full response in xml format for the api request.
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<qloapps xmlns:xlink="http://www.w3.org/1999/xlink">
+    <booking>
+        <id>
+            <![CDATA[ 1 ]]>
+        </id>
+        <id_property>
+            <![CDATA[ 1 ]]>
+        </id_property>
+        <currency>
+            <![CDATA[ USD ]]>
+        </currency>
+        <source>
+            <![CDATA[ qloapps.com ]]>
+        </source>
+        <booking_date>
+            <![CDATA[ 2025-07-10 11:59:24 ]]>
+        </booking_date>
+        <id_language>
+            <![CDATA[ 1 ]]>
+        </id_language>
+        <associations>
+            <customer_detail>
+                <id_customer>
+                    <![CDATA[ 1 ]]>
+                </id_customer>
+                <firstname>
+                    <![CDATA[ John ]]>
+                </firstname>
+                <lastname>
+                    <![CDATA[ Doe ]]>
+                </lastname>
+                <email>
+                    <![CDATA[ pub@qloapps.com ]]>
+                </email>
+                <phone>
+                    <![CDATA[ 1234567890 ]]>
+                </phone>
+            </customer_detail>
+            <price_details>
+                <total_paid>
+                    <![CDATA[ 1125 ]]>
+                </total_paid>
+                <total_price_without_tax>
+                    <![CDATA[ 1000 ]]>
+                </total_price_without_tax>
+                <total_tax>
+                    <![CDATA[ 125 ]]>
+                </total_tax>
+            </price_details>
+            <cart_rules>
+                <![CDATA[ 0 ]]>
+            </cart_rules>
+            <remarks>
+                <remark>
+                    <![CDATA[ Manual order -- Employee: D. Demo ]]>
+                </remark>
+            </remarks>
+            <room_types>
+                <room_type>
+                    <id_room_type>
+                        <![CDATA[ 1 ]]>
+                    </id_room_type>
+                    <checkin_date>
+                        <![CDATA[ 2025-07-08 00:00:00 ]]>
+                    </checkin_date>
+                    <checkout_date>
+                        <![CDATA[ 2025-07-09 00:00:00 ]]>
+                    </checkout_date>
+                    <total_tax>
+                        <![CDATA[ 112.5 ]]>
+                    </total_tax>
+                    <number_of_rooms>
+                        <![CDATA[ 1 ]]>
+                    </number_of_rooms>
+                    <name>
+                        <![CDATA[ General Rooms ]]>
+                    </name>
+                    <rooms>
+                        <room>
+                            <id_room>
+                                <![CDATA[ 1 ]]>
+                            </id_room>
+                            <id_hotel_booking>
+                                <![CDATA[ 1 ]]>
+                            </id_hotel_booking>
+                            <adults>
+                                <![CDATA[ 1 ]]>
+                            </adults>
+                            <child>
+                                <![CDATA[ 0 ]]>
+                            </child>
+                            <unit_price_without_tax>
+                                <![CDATA[ 900 ]]>
+                            </unit_price_without_tax>
+                            <total_tax>
+                                <![CDATA[ 112.5 ]]>
+                            </total_tax>
+                            <services>
+                                <service>
+                                    <id_service>
+                                        <![CDATA[ 11 ]]>
+                                    </id_service>
+                                    <name>
+                                        <![CDATA[ Transport ]]>
+                                    </name>
+                                    <quantity>
+                                        <![CDATA[ 1 ]]>
+                                    </quantity>
+                                    <unit_price_without_tax>
+                                        <![CDATA[ 100 ]]>
+                                    </unit_price_without_tax>
+                                    <total_price_without_tax>
+                                        <![CDATA[ 100 ]]>
+                                    </total_price_without_tax>
+                                    <total_tax>
+                                        <![CDATA[ 12.5 ]]>
+                                    </total_tax>
+                                    <per_night>
+                                        <![CDATA[ 0 ]]>
+                                    </per_night>
+                                    <price_mode>
+                                        <![CDATA[ 1 ]]>
+                                    </price_mode>
+                                </service>
+                            </services>
+                        </room>
+                    </rooms>
+                </room_type>
+            </room_types>
+        </associations>
+    </booking>
+</qloapps>
+```
+
+### Get response in JSON
+
+**Url**: http://example.com/api/bookings/1?ws_key=MNBDHALDK122DA879ADAD12ASKSK12W3&output_format=JSON
+
+**Method**: POST
+
+**Request body**: Get the request xml body content from [Request XML](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#request-xml) of api.
+
+#### Response JSON
+Below is the full response in json format for the api request.
+
+```json
+{
+	"booking": {
+		"id": 1,
+		"id_property": 1,
+		"currency": "USD",
+		"source": "qloapps.com",
+		"booking_date": "2025-07-10 11:59:24",
+		"id_language": 1,
+		"associations": {
+			"customer_detail": {
+				"id_customer": 1,
+				"firstname": "John",
+				"lastname": "Doe",
+				"email": "pub@qloapps.com",
+				"phone": "1234567890"
+			},
+			"price_details": {
+				"total_paid": 1125,
+				"total_price_without_tax": 1000,
+				"total_tax": 125
+			},
+			"cart_rules": [],
+			"remarks": [
+				"Manual order -- Employee: D. Demo"
+			],
+			"room_types": [
+				{
+					"id_room_type": 1,
+					"checkin_date": "2025-07-08 00:00:00",
+					"checkout_date": "2025-07-09 00:00:00",
+					"total_tax": 112.5,
+					"number_of_rooms": 1,
+					"name": "General Rooms",
+					"rooms": [
+						{
+							"id_room": 1,
+							"id_hotel_booking": 1,
+							"adults": 1,
+							"child": 0,
+							"unit_price_without_tax": 900,
+							"total_tax": 112.5,
+							"services": [
+								{
+									"id_service": 11,
+									"name": "Transport",
+									"quantity": 1,
+									"unit_price_without_tax": 100,
+									"total_price_without_tax": 100,
+									"total_tax": 12.5,
+									"per_night": 0,
+									"price_mode": 1
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	}
+}
+```

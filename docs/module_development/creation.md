@@ -41,7 +41,7 @@ class MyQloModule extends Module
 }
 ```
 
-*So this is the minimum requirement to show your module in the module list. Now if you put your module in the `/modules` folder then in the back office modules list, this module will be seen in the "Other Modules" section.*
+*So this is the minimum requirement to show your module in the module list. Now if you put your module in the `/modules` folder then in the back office modules list, this module will be seen in the listing on "Modules Catalog" page.*
 
 #### Create constructor method of the class
 
