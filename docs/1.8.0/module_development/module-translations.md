@@ -1,0 +1,153 @@
+# Module Translations
+
+While developing a module, You write your strings in the English language. But you are not creating your modules for the English language audience only.
+
+You must want your module is for every language (French, Dutch, Spanish, etc) the website provides for its employees and customers. So you have to translate them into every language available on your website.
+
+If you do this task manually it is very tedious. But QloApps provides an easy way to make your strings of the module translatable in every language.
+
+Your translatable strings may reside in two types of files in the QloApps module -
+- PHP files
+- Smarty files (.tpl)
+
+### PHP files translations
+In PHP files, use **$this->l('My Module String.')** method call.
+This method is in the **Module** abstract class and available in all the modules of QloApps.
+
+Below is the example of the module's main file myqlomodule.php
+```php
+$this->displayName = $this->l('My QloApps Module');
+$this->description = $this->l('Write a description of the module.');
+```
+
+Mostly in all cases in php files you have to use **$this->l()** method.
+
+But in some special cases this method will not work::
+
+<ins>**CASE - 1**</ins> : In the **Front controller** of the module you have to use **$this->module->l()** for string translations.
+
+```php
+$this->module->l('My QloApps String to translate in front controller.', 'front_controller_file_name')
+```
+
+Let us understand it with an example.
+Below we are translating string in the `/cheque/controllers/front/validation.php` file:
+```php
+die($this->module->l('This payment method is not available.', 'validation'));
+```
+
+<ins>**CASE - 2**</ins>: In the **Classes** of the module you have to first create the module's object and then call the **l()** method with the module's object.
+
+If there is a class named **ModuleHelper** in the file **myqlomodule/classes/ModuleHelper.php**. Then we have to make string translatable in this class like below -
+```php
+$objModule = new MyQloModule();
+$objModule->l('My QloApps String to translate in module classes.', 'ModuleHelper')
+// ModuleHelper is file name of the class
+```
+
+<ins>**CASE - 3**</ins>: In the **Admin controller** of the module (`ModuleAdminController`) you can use **$this->l()** as in the main file.
+
+```php
+$this->l('My QloApps String to translate in admin controller.')
+```
+
+::: tip
+The translation key stored in the module's translation file has the format `<{modulename}prestashop>filename_md5(string)`, where `filename` is the second parameter given to `l()` (the front controller file name, the class file name, or the template name), so use the same name consistently.
+:::
+
+### Smarty files (.tpl) Translations
+In the .tpl files, use **{l s='My string' mod='mymodule'}** function call which is replaced by smarty by the translation of the chosen language.
+
+For example, If we have to make below line's strings translatable -
+```php
+<a href="{$moduleControllerLink}" title="Click Here">Click here to visit the link!</a>
+```
+
+Below is the translatable string code:
+```php
+<a href="{$moduleControllerLink}" title="{l s='Click Here' mod='myqlomodule'}">{l s='Click here to visit the link' mod='myqlomodule'}</a>
+```
+
+Sometimes there are complex codes to translate:
+
+Lets take a look at the below code:
+```php
+This is
+{if isset($module_name_var) && $module_name_var}
+    {$module_name_var}
+{else}
+    QloApps Module
+{/if}
+```
+In the above code **"This is QloApps Module"** string is translatable.
+In the first method, you can make strings **"This is"** and **"QloApps Module"** translatable separately.
+```php
+{l s='This is' mod='myqlomodule'}
+{if isset($module_name_var) && $module_name_var}
+    {$module_name_var}
+{else}
+    {l s='QloApps Module' mod='myqlomodule'}
+{/if}
+```
+
+In the second method, sprintf() markers can mark the variables as %s or %2$s.\
+In the above example, %s must be replaced by the **QloApps module** if and only if variable **$module_name_var** is not there.
+And we have to keep in our mind to make **"QloApps Module"** string translatable.
+
+This can be achieved through the below code -
+- **{capture}** function in Smarty only collects the template output into a variable between the tags to use later on. It does not display it.
+- translated **"QloApps Module"** is Replaced with the variable if the **$module_name_var** is empty or absent, using a temporary variable (**$temp_mod_name**).
+
+See the below code:
+```php
+{if !isset($module_name_var) || !$module_name_var}
+    {capture name='temp_mod_name'}{l s='QloApps Module' mod='myqlomodule'}{/capture}
+    {assign var='module_name_var' value=$smarty.capture.temp_mod_name}
+{/if}
+{l s='Hello %s' sprintf=$module_name_var mod='myqlomodule'}
+```
+
+- **mod** parameter is mandatory in module translations.\
+QloApps translation system use it to know which translations belongs to which module.\
+
+- **single quotes** delimiter is used to delimit Translation Strings. If you want to use single quotes in a string then it should be escaped with a backslash (\\).
+
+```php
+{l s='Learn to write \'Hello World\'.' mod='myqlomodule'}
+```
+So this is how strings in the template files are translated.
+
+
+### Translate the strings in QloApps
+
+Below are steps to translate strings in QloApps:
+- Visit **Localization -> Translations** tab.
+- Select **Installed modules translations** from the **Modify translations** drop-down.
+- Select the language in which you want to translate the module.
+- Click the **Modify** button to proceed.
+- Now in the loaded page all the strings from all the installed modules in QloApps will be displayed.
+The fieldsets of the module will be closed which all the strings are already translated. Otherwise, if at least one string is left for translations module's fieldset is expanded.
+- Next step is to find your module in the list to translate and fill the translations in the text fields.
+- After filling in all the translations, click on the **Save and Stay** or **Save** button. this way your translations will be saved.
+
+- Module's translations are saved in a file named using the languageCode.php format i.e. **/myqlomodule/traslations/fr.php**.
+Below is the demo file how translation files actually look like:
+
+```php
+<?php
+global $_MODULE;
+$_MODULE = array();
+$_MODULE['<{myqlomodule}prestashop>myqlomodule_2ddddc2a736e4128ce1cdfd22b041e7f'] = 'Mon module';
+$_MODULE['<{myqlomodule}prestashop>myqlomodule_d6968577f69f08c93c209bd8b6b3d4d5'] = 'Description du module Qlo.';
+$_MODULE['<{myqlomodule}prestashop>myqlomodule_533937acf0e84c92e787614bbb16a7a0'] = 'Êtes-vous certain de vouloir désinstaller ce module ? Vous perdrez tous vos réglages !';
+$_MODULE['<{myqlomodule}prestashop>myqlomodule_0f40e8817b005044250943f57a21c5e7'] = 'Aucun nom fourni';
+$_MODULE['<{myqlomodule}prestashop>myqlomodule_fe5d926454b6a8144efce13a44d019ba'] = 'Valeur de configuration non valide.';
+$_MODULE['<{myqlomodule}prestashop>myqlomodule_c888438d14855d7d96a2724ee9c306bd'] = 'Réglages mis à jour';
+```
+**Note** : *The translation files created in the translations/ folder of the module must not be edited manually. You have to use the QloApps translations page to translate the strings of the module again.*
+
+When you have translated the module's string in the french language (or any other language) then selecting that language in the front office or back office of the website the translated content in the french language (or any other language) will be shown.
+
+::: tip
+Since QloApps 1.8.0, the **Email templates translations** page (**Localization -> Translations**) shows the list of variables available in each email template and has a reset button (`AdminTranslationsController::ajaxProcessResetMailTemplate()`) which restores a core or module email template from the language pack (`Language::resetEmailTemplate()`). The mail templates of a module must stay in the `mails/<iso_code>/` folder of the module (see [Send Emails from QloApps](../helpers/email.md)).
+:::

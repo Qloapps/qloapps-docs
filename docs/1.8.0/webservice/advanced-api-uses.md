@@ -520,9 +520,9 @@ With the help of this api, you can get the information of the inventories and ra
 
 There are two methods available for getting availability and rates:
 
-1. [**Get Availability & Rates information for Entire Date Range**](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#get-availability--rates-information-for-entire-date-range) : To get availability & rates infomation for the entire requested date range
+1. [**Get Availability & Rates information for Entire Date Range**](/1.8.0/webservice/advanced-api-uses.html#get-availability--rates-information-for-entire-date-range) : To get availability & rates infomation for the entire requested date range
 
-2. [**Get Availability & Rates information with Date Wise Break-down**](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#get-availability--rates-information-with-date-wise-break-down) : To get information of availability & rates for every date(Date wise breakdowm) in the requested date range
+2. [**Get Availability & Rates information with Date Wise Break-down**](/1.8.0/webservice/advanced-api-uses.html#get-availability--rates-information-with-date-wise-break-down) : To get information of availability & rates for every date(Date wise breakdowm) in the requested date range
 
 
 ### API endpoint
@@ -733,7 +733,7 @@ Create request xml for the api according to your requirements. Request xml forma
 
 **Method**: POST
 
-**Request body**: Get the xml request body from [Request XML](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#request-xml) of api.
+**Request body**: Get the xml request body from [Request XML](/1.8.0/webservice/advanced-api-uses.html#request-xml) of api.
 
 #### Response XML
 
@@ -956,7 +956,7 @@ Below is the full response in xml format for the api request.
 
 **Method**: POST
 
-**Request body**: Get the request xml body content from [Request XML](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#request-xml) of api.
+**Request body**: Get the request xml body content from [Request XML](/1.8.0/webservice/advanced-api-uses.html#request-xml) of api.
 
 #### Response JSON
 Below is the full response in json format for the api request.
@@ -1168,7 +1168,7 @@ Create request xml for the api according to your requirements. Request xml forma
 
 **Method**: POST
 
-**Request body**: Get the xml request body from [Request XML for date wise breakdown](https://devdocs.qloapps.com/webservice/advanced-api-uses.html##request-xml-for-date-wise-breakdown) of api.
+**Request body**: Get the xml request body from [Request XML for date wise breakdown](/1.8.0/webservice/advanced-api-uses.html#request-xml-for-date-wise-breakdown) of api.
 
 #### Response XML
 
@@ -1536,7 +1536,7 @@ Below is the full response in xml format for the api request.
 
 **Method**: POST
 
-**Request body**: Get the request xml body content from [Request XML for date wise breakdown](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#request-xml-for-date-wise-breakdown) of api.
+**Request body**: Get the request xml body content from [Request XML for date wise breakdown](/1.8.0/webservice/advanced-api-uses.html#request-xml-for-date-wise-breakdown) of api.
 
 #### Response JSON
 Below is the full response in json format for the api request.
@@ -1856,15 +1856,6 @@ After requesting for the schema, you will get below format of the schema of the 
                                     <total_tax/>
                                 </service>
                             </services>
-                            <facilities>
-                                <facility>
-                                    <id_facility/>
-                                    <id_option/>
-                                    <name/>
-                                    <unit_price_without_tax/>
-                                    <id_tax_rules_group/>
-                                </facility>
-                            </facilities>
                         </room>
                     </rooms>
                 </room_type>
@@ -1956,15 +1947,6 @@ After requesting for the synopsis, you will get below format of the synopsis of 
                                     <total_tax/>
                                 </service>
                             </services>
-                            <facilities>
-                                <facility>
-                                    <id_facility/>
-                                    <id_option/>
-                                    <name/>
-                                    <unit_price_without_tax/>
-                                    <id_tax_rules_group/>
-                                </facility>
-                            </facilities>
                         </room>
                     </rooms>
                 </room_type>
@@ -2160,9 +2142,7 @@ Below is the full response in xml format for the api request.
 
 **Url**: http://example.com/api/bookings/1?ws_key=MNBDHALDK122DA879ADAD12ASKSK12W3&output_format=JSON
 
-**Method**: POST
-
-**Request body**: Get the request xml body content from [Request XML](https://devdocs.qloapps.com/webservice/advanced-api-uses.html#request-xml) of api.
+**Method**: GET
 
 #### Response JSON
 Below is the full response in json format for the api request.
@@ -2229,3 +2209,55 @@ Below is the full response in json format for the api request.
 	}
 }
 ```
+
+### Get bookings list
+
+Use this method to get the list of bookings. Without any parameter, the response contains only the booking ids with a link to each booking. Add `display=full` to get the full details of every booking in the list.
+
+**Url**: http://example.com/api/bookings?ws_key=MNBDHALDK122DA879ADAD12ASKSK12W3&display=full
+
+**Method**: GET
+
+::: tip
+Since QloApps 1.8.0, the bookings list supports the `filter`, `sort` and `limit` parameters. Each booking in the full list response also contains `room_status` for every room type and `child_ages` for every room.
+:::
+
+#### Filters
+
+Use the `filter[field]` parameter with one of the below fields. An unknown field returns a 400 error.
+
+| Filter | Description |
+| :--- | :--- |
+| id_property | Id of the property |
+| customer | Customer first name or email (partial match) |
+| id_customer | Id of the customer |
+| id_order | Id of the booking (order) |
+| reference | Order reference |
+| id_room | Id of the room |
+| is_cancelled | 1 for cancelled rooms, 0 otherwise |
+| stay | Total number of nights of the booking |
+| room_status | Room status id |
+| booking_status | Order status id |
+| source | Booking source |
+| booking_date | Date of the booking |
+| checkin_date | Check-in date |
+| checkout_date | Check-out date |
+| id_room_type | Id of the room type |
+| payment_type | Payment type |
+| payment_method | Payment method |
+
+The id fields, `stay`, `room_status`, `booking_status` and `is_cancelled` accept only unsigned integers, the date fields accept only valid dates. An invalid value returns a 400 error.
+
+The operators of the standard `filter` parameter can be used, for example:
+
+- **EQUAL**: http://example.com/api/bookings?display=full&filter[id_property]=1
+- **OR**: http://example.com/api/bookings?display=full&filter[id_room_type]=[1|2]
+- **BETWEEN** (dates or numbers): http://example.com/api/bookings?display=full&filter[checkin_date]=[2025-07-01,2025-07-31]
+- **GREATER THAN / LOWER THAN**: http://example.com/api/bookings?display=full&filter[booking_date]=>[2025-07-01]
+- **NOT EQUAL**: http://example.com/api/bookings?display=full&filter[source]=![qloapps.com]
+- **LIKE**: http://example.com/api/bookings?display=full&filter[customer]=john
+
+#### Sort and limit
+
+- **sort**: only the filter fields above can be used, for example `sort=[checkin_date_DESC]` or `sort=[id_property_ASC,booking_date_DESC]`.
+- **limit**: `limit=10` or `limit=5,10` (offset, count).
